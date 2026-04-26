@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: pg-payara
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: payara_user
+      POSTGRES_PASSWORD: payara_pass
+      POSTGRES_DB: payara_db
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -h localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+  payara:
+    image: payara/server-full:latest  # choose an appropriate Payara image; update tag if needed
+    container_name: payara
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+      - "4848:4848"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: payara_db
+      DB_USER: payara_user
+      DB_PASSWORD: payara_pass
+    volumes:
+      - ./deployments:/opt/payara/deployments
+      - ./asadmin-scripts:/opt/payara/asadmin-scripts
+    command: >
+      bash -c "
+      set -e;
+      # wait for DB reachable (extra protection)
+      until pg_isready -h ${DB_HOST} -p ${DB_PORT} -U ${DB_USER}; do sleep 1; done;
+      # run asadmin script to create jdbc-resource/pool if not already configured
+      /opt/payara/bin/asadmin start-domain --verbose &
+      sleep 6;
+      /opt/payara/bin/asadmin --user admin --passwordfile=/tmp/pwdfile change-admin-password --passwordfile=/tmp/pwdfile || true;
+      /opt/payara/bin/asadmin --host localhost --port 4848 create-jdbc-connection-pool \
+        --datasourceclassname org.postgresql.ds.PGSimpleDataSource \
+        --restype javax.sql.DataSource \
+        --property user=${DB_USER}:password=${DB_PASSWORD}:databaseName=${DB_NAME}:serverName=${DB_HOST}:portNumber=${DB_PORT} PayaraPostgresPool || true;
+      /opt/payara/bin/asadmin create-jdbc-resource --connectionpoolid PayaraPostgresPool jdbc/payaraDS || true;
+      fg 1
+      "
+
+volumes:
+  pgdata:

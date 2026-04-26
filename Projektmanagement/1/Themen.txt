@@ -1,0 +1,20 @@
+#### Grundlagen
+
+* Warum braucht man Softwareprojektmanagement? 
+* Was ist ein Projekt und welche Eigenschaften haben Projekte?
+* Was ist ein IT-Projekt und was für Typen von IT-Projekten gibt es (Sanierungsprojekte, Prototypprojekte, etc.)?
+* Definition Projektmanagement und Compliance
+* Welche Funktion haben Projektziele (Koordination, Auswahl, Kontrolle)?
+* SMART-Regeln
+* Aufgaben des Projektmanagement (Terminmanagement, Risikomanagement etc.)
+* Herausforderungen, Erfolgsfaktoren und Ziele beim IT-Projektmanagement
+* Das magische Zieldreieck
+* Projektqualität und Projekterfolg
+* Unterschied zwischen Abwicklungserfolg und Anwendungserfolg
+
+#### Lebenszyklen
+
+* Phasen des Produktlebenszyklus
+* Phasen des Softwarelebenszyklus
+* Phasen des Projektlebenszyklus
+* Die Phasen Projektentstehung, Projektdefinition, Projektdurchführung, Projektabschluss. Hinweis die Phasen nicht im Detail beschreiben.
