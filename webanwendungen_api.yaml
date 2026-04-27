@@ -30,12 +30,44 @@ collection:
         send: true
         store: true
       rebuildPath: true
+  - url: localhost:8080/myapp
+    name: MyApp
+    meta:
+      id: req_0d585bf664ce4daa8f0a8b2ea0ad98f6
+      created: 1777324984688
+      modified: 1777324989009
+      isPrivate: false
+      description: ""
+      sortKey: -1767006568237
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
     id: jar_492b52167f629ff3e4954a312ad383893434bca7
     created: 1777195460568
-    modified: 1777195460568
+    modified: 1777324989290
+  cookies:
+    - id: 9e906a76-2fbf-457f-afd9-050dd68a3186
+      key: JSESSIONID
+      value: 0d31b64c0d3ae4f95d02d87de3a7
+      domain: localhost
+      path: /myapp
+      secure: false
+      httpOnly: true
+      hostOnly: true
 environments:
   name: Base Environment
   meta:
