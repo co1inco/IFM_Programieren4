@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Payara Servlet",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 9009,
+      "projectName": "myapp",
+      "sourcePaths": [
+        "${workspaceFolder}/src/main/java"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Webanwendung - Demo",
+			"path": "Webanwendungen/1/demo"
+		}
+	],
+	"settings": {
+		"python-envs.defaultEnvManager": "ms-python.python:system"
+	},
+	"launch": {
+		"configurations": [
+			{
+				"type": "java",
+				"name": "Debug Payara Servlet",
+				"request": "attach",
+				"hostName": "localhost",
+				"port": 9009,
+				"projectName": "myapp",
+				"sourcePaths": [
+					"${workspaceFolder}/src/main/java"
+				]
+			},
+			{
+				"type": "java",
+				"request": "attach",
+				"hostName": "localhost",
+				"name": "payara-micro",
+				"port": 5005
+			}
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "payara-micro-reload",
+				"type": "shell",
+				"command": "mvn resources:resources compiler:compile war:exploded fish.payara.maven.plugins:payara-micro-maven-plugin:reload",
+				"group": "build"
+			}
+		]
+	}
+}

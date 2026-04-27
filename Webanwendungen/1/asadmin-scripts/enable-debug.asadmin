@@ -1,0 +1,2 @@
+# Enable debug JVM options
+asadmin set server-config.jvm-options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9009"
