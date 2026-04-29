@@ -1,4 +1,8 @@
 
+## ports
+ * https://localhost:4848: admin console
+ * http://localhost:8080 (web applications, the http is important)
+
 
 ## docker
 
