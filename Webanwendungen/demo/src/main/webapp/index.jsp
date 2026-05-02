@@ -7,7 +7,7 @@
 
 <body>
     <h1>MyApp deployed on Payara</h1>
-    <h2>Hello world  aaaa</h2>
+    <h2>Hello world asd ddd</h2>
     <p><a href="hello">Say hello</a></p>
 </body>
 

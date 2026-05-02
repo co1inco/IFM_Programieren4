@@ -10,38 +10,5 @@
 	],
 	"settings": {
 		"python-envs.defaultEnvManager": "ms-python.python:system"
-	},
-	"launch": {
-		"configurations": [
-			{
-				"type": "java",
-				"name": "Debug Payara Servlet",
-				"request": "attach",
-				"hostName": "localhost",
-				"port": 9009,
-				"projectName": "myapp",
-				"sourcePaths": [
-					"${workspaceFolder}/src/main/java"
-				]
-			},
-			{
-				"type": "java",
-				"request": "attach",
-				"hostName": "localhost",
-				"name": "payara-micro",
-				"port": 5005
-			}
-		]
-	},
-	"tasks": {
-		"version": "2.0.0",
-		"tasks": [
-			{
-				"label": "payara-micro-stop",
-				"type": "shell",
-				"command": "mvn fish.payara.maven.plugins:payara-micro-maven-plugin:stop",
-				"group": "build"
-			}
-		]
 	}
 }

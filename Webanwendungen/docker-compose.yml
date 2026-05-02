@@ -30,7 +30,6 @@ services:
       - "8080:8080"
       - "4848:4848"
       - "9009:9009"
-      # - "5005:9009"
     environment:
       DB_HOST: postgres
       DB_PORT: "5432"
@@ -38,24 +37,14 @@ services:
       DB_USER: payara_user
       DB_PASSWORD: payara_pass
       JAVA_DEBUGGER_PORT: "9009"
+      PAYARA_ARGS: "--debug"
     volumes:
-      - ./deployments:/opt/payara/deployments
+      # - ./deployments:/opt/payara/deployments
+      - ./deployments:/opt/payara/appserver/glassfish/domains/domain1/autodeploy
+      - ./demo/target/myapp:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp
       - ./asadmin-scripts:/opt/payara/asadmin-scripts
       - ./demo:/opt/payara/demo
-    command: >
-      bash -c "
-      set -e;
-      until pg_isready -h ${DB_HOST} -p ${DB_PORT} -U ${DB_USER}; do sleep 1; done;
-      /opt/payara/bin/asadmin start-domain --verbose --debug &
-      sleep 10;
-      /opt/payara/bin/asadmin --host localhost --port 4848 create-jdbc-connection-pool \
-      --datasourceclassname org.postgresql.ds.PGSimpleDataSource \
-      --restype javax.sql.DataSource \
-      --property user=${DB_USER}:password=${DB_PASSWORD}:databaseName=${DB_NAME}:serverName=${DB_HOST}:portNumber=${DB_PORT} PayaraPostgresPool || true;
-      /opt/payara/bin/asadmin create-jdbc-resource --connectionpoolid PayaraPostgresPool jdbc/payaraDS || true;
-      /opt/payara/bin/asadmin set server-config.jvm-options=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009;
-      fg 1
-      "
+
     # command: >
     #   bash -c "
     #   set -e;
