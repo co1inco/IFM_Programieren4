@@ -9,7 +9,7 @@
             "command": "mvn clean package",
             "group": "build",
             "options": {
-                "cwd": "Webanwendungen/1/demo"
+                "cwd": "Webanwendungen/demo"
             },
             "presentation": {
                 "echo": true,

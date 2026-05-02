@@ -37,9 +37,9 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
-				"label": "payara-micro-reload",
+				"label": "payara-micro-stop",
 				"type": "shell",
-				"command": "mvn resources:resources compiler:compile war:exploded fish.payara.maven.plugins:payara-micro-maven-plugin:reload",
+				"command": "mvn fish.payara.maven.plugins:payara-micro-maven-plugin:stop",
 				"group": "build"
 			}
 		]
