@@ -39,8 +39,10 @@ services:
       JAVA_DEBUGGER_PORT: "9009"
       PAYARA_ARGS: "--debug"
     volumes:
-      # - ./deployments:/opt/payara/deployments
-      - ./deployments:/opt/payara/appserver/glassfish/domains/domain1/autodeploy
+    # Load war files from dpeloayments directory
+      - ./deployments:/opt/payara/deployments
+      # - ./deployments:/opt/payara/appserver/glassfish/domains/domain1/autodeploy
+    # autodeploy demo app (myapp)
       - ./demo/target/myapp:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp
       - ./asadmin-scripts:/opt/payara/asadmin-scripts
       - ./demo:/opt/payara/demo
