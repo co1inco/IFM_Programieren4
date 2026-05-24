@@ -9,7 +9,7 @@
     <url-pattern>/api/hello</url-pattern>
   </servlet-mapping>
 
-  <!-- LayoutController for main routing -->
+  <!-- LayoutController for page routing - only root path -->
   <servlet>
     <servlet-name>LayoutController</servlet-name>
     <servlet-class>com.example.LayoutController</servlet-class>
@@ -17,13 +17,5 @@
   <servlet-mapping>
     <servlet-name>LayoutController</servlet-name>
     <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>LayoutController</servlet-name>
-    <url-pattern>/about</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>LayoutController</servlet-name>
-    <url-pattern>/hello</url-pattern>
   </servlet-mapping>
 </web-app>
