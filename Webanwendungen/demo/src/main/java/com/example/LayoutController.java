@@ -2,10 +2,8 @@ package com.example;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 
-@WebServlet(name = "LayoutController", urlPatterns = {"/", "/about", "/hello"})
 public class LayoutController extends HttpServlet {
     
     @Override
@@ -14,7 +12,8 @@ public class LayoutController extends HttpServlet {
         
         String path = request.getServletPath();
         String pagePath;
-        
+       
+
         // Route requests to appropriate page
         switch (path) {
             case "/about":

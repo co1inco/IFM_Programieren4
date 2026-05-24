@@ -1,4 +1,14 @@
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="5.0">
+  <!-- HelloServlet - available at /api/hello -->
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>com.example.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/api/hello</url-pattern>
+  </servlet-mapping>
+
   <!-- LayoutController for main routing -->
   <servlet>
     <servlet-name>LayoutController</servlet-name>
@@ -13,7 +23,7 @@
     <url-pattern>/about</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>layoutcontroller</servlet-name>
+    <servlet-name>LayoutController</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
 </web-app>

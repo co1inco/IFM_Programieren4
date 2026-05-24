@@ -2,3 +2,5 @@
 <h2>Hello World</h2>
 <p>Hello from Payara!</p>
 <p>This page is also wrapped with the shared layout system.</p>
+
+<a href="api/hello">Hello</a>
