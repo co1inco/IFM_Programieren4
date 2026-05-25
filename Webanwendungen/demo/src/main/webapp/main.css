@@ -4,10 +4,22 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 auto; /* grow to fill remaining space */
+    overflow: auto; /* scroll if content overflows */
 }
 
 header {
@@ -46,10 +58,10 @@ nav a:hover {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 2rem auto;
+    /* max-width: 1200px; */
+    margin: 2rem 2em;
     padding: 0 2rem;
-    min-height: calc(100vh - 300px);
+    /* min-height: calc(100vh - 300px); */
 }
 
 footer {

@@ -4,33 +4,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyApp</title>
+    <title>StudBoard</title>
     <link rel="stylesheet" href="/myapp/main.css">
 </head>
+
 <body>
     <!-- Header -->
-    <header>
-        <h1>MyApp</h1>
-        <p>Deployed on Payara</p>
+    <header id="header">
+        <picture>
+            <source media="(min-width: 1920px)" srcset="/myapp/res/header1920x200.png">
+            <source media="(min-width: 1280px)" srcset="/myapp/res/header1280x133.png">
+            <source media="(min-width: 640px)" srcset="/myapp/res/header640x67.png">
+            <img src="/myapp/res/header320x34.png">
+        </picture>
+
+        <nav>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.5em; color: yellow"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/about">Projekte</a></li>
+                <li><a href="${pageContext.request.contextPath}/hello">Neues Projekt</a></li>
+            </ul>
+        </nav>
     </header>
     
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/about">About</a></li>
-            <li><a href="${pageContext.request.contextPath}/hello">Say Hello</a></li>
-        </ul>
-    </nav>
+    
     
     <!-- Main Content -->
     <main class="container">
-        <jsp:include page="${requestScope.page}" />
+        
+        <section>
+            <jsp:include page="${requestScope.page}" />    
+        </section>
+        
     </main>
+
+    <section>
+        <div>
+            <h3>Login</h3>
+            <form>
+                <!-- <legend>Login</legend> -->
+                <fieldset>
+                    <label>Username</label>
+                    <input id="name" type="text"/>
+
+                    <label>Password</label>
+                    <input id="password" type="password"/>
+
+                    <input type="submit" value="Login"/> 
+                </fieldset>
+            </form>
+            
+            <span>Neu hier? <a href="register">Registrieren</a></span>
+        </div>
+    </section>
     
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 MyApp. All rights reserved.</p>
+        <nav>
+            <ul>
+                <a href="#header">Zurück zum Anfang</a>
+                <a href="impresum">Impressum</a>
+                <a href="dsgvo">Datenschutzerklärung</a>
+                <a href="haftung">Haftungsausschluss</a>
+            </ul>
+        </nav>
+        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>        
     </footer>
 </body>
 </html>
