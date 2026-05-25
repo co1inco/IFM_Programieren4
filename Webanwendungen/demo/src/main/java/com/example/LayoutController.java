@@ -24,26 +24,32 @@ public class LayoutController extends HttpServlet {
         
         String pagePath;
         
-        // Route requests to appropriate page
-        switch (path) {
-            case "/about":
-                pagePath = "/WEB-INF/pages/about.jsp";
-                break;
-            case "/hello":
-                // Hello page also uses the layout
-                pagePath = "/WEB-INF/pages/hello.jsp";
-                break;
-            case "/":
-                pagePath = "/WEB-INF/pages/home.jsp";
-                break;
-            default:
-                // Unknown page routes - delegate to default servlet
-                // RequestDispatcher dispatcher = request.getServletContext().getNamedDispatcher("default");
-                // if (dispatcher != null) {
-                //     dispatcher.forward(request, response);
-                // }
-                return;
+        if (path.startsWith("/project")){
+            pagePath = "/WEB-INF/pages/project.jsp";
         }
+        else {
+            // Route requests to appropriate page
+            switch (path) {
+                case "/about":
+                    pagePath = "/WEB-INF/pages/about.jsp";
+                    break;
+                case "/hello":
+                    // Hello page also uses the layout
+                    pagePath = "/WEB-INF/pages/hello.jsp";
+                    break;
+                case "/":
+                    pagePath = "/WEB-INF/pages/home.jsp";
+                    break;
+                default:
+                    // Unknown page routes - delegate to default servlet
+                    // RequestDispatcher dispatcher = request.getServletContext().getNamedDispatcher("default");
+                    // if (dispatcher != null) {
+                    //     dispatcher.forward(request, response);
+                    // }
+                    return;
+            }            
+        }
+       
         
         // Set the page as a request attribute for the layout to include
         request.setAttribute("page", pagePath);

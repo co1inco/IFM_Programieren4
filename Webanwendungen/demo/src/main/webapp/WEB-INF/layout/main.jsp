@@ -41,7 +41,7 @@
     <section>
         <div>
             <h3>Login</h3>
-            <form>
+            <form action="/myapp/submit" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
                     <label>Username</label>

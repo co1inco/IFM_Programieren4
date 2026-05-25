@@ -12,10 +12,10 @@
 
 <article>
     <ul>
-        <li>Projekt 1</li>
-        <li>Projekt 2</li>
-        <li>Projekt 3</li>
-        <li>Projekt 4</li>
-        <li>Projekt 5</li>
+        <li>Projekt 1 <a href="project/1">hier</a></li>
+        <li>Projekt 2 <a href="project/2">hier</a></li>
+        <li>Projekt 3 <a href="project/3">hier</a></li>
+        <li>Projekt 4 <a href="project/4">hier</a></li>
+        <li>Projekt 5 <a href="project/5">hier</a></li>
     </ul>
 </article>
