@@ -34,7 +34,7 @@ public class LayoutController extends HttpServlet {
                 pagePath = "/WEB-INF/pages/hello.jsp";
                 break;
             case "/":
-                pagePath = "/WEB-INF/pages/index.jsp";
+                pagePath = "/WEB-INF/pages/home.jsp";
                 break;
             default:
                 // Unknown page routes - delegate to default servlet

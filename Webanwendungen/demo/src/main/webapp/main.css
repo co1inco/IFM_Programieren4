@@ -15,11 +15,11 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
+    min-height: 100%;
 }
 
 main {
-    flex: 1 1 auto; /* grow to fill remaining space */
-    overflow: auto; /* scroll if content overflows */
+    flex: 1 0 auto; /* grow to fill remaining space */
 }
 
 header {

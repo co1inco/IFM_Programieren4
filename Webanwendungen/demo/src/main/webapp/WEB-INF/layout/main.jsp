@@ -62,10 +62,10 @@
     <footer>
         <nav>
             <ul>
-                <a href="#header">Zurück zum Anfang</a>
-                <a href="impresum">Impressum</a>
-                <a href="dsgvo">Datenschutzerklärung</a>
-                <a href="haftung">Haftungsausschluss</a>
+                <li><a href="#header">Zurück zum Anfang</a></li>
+                <li><a href="impresum">Impressum</a></li>
+                <li><a href="dsgvo">Datenschutzerklärung</a></li>
+                <li><a href="haftung">Haftungsausschluss</a></li>
             </ul>
         </nav>
         <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>        
