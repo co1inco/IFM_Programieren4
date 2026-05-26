@@ -21,8 +21,8 @@
         <nav>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.5em; color: yellow"/></a></li>
-                <li><a href="${pageContext.request.contextPath}/about">Projekte</a></li>
-                <li><a href="${pageContext.request.contextPath}/hello">Neues Projekt</a></li>
+                <li><a href="${pageContext.request.contextPath}/projects">Projekte</a></li>
+                <li><a href="${pageContext.request.contextPath}/newproject">Neues Projekt</a></li>
             </ul>
         </nav>
     </header>
@@ -44,11 +44,11 @@
             <form action="/myapp/submit" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
-                    <label>Username</label>
-                    <input id="name" type="text"/>
+                    <label for="name">Username</label>
+                    <input id="name" name="name" type="text"/>
 
-                    <label>Password</label>
-                    <input id="password" type="password"/>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password"/>
 
                     <input type="submit" value="Login"/> 
                 </fieldset>

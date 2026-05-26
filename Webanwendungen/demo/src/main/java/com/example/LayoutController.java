@@ -24,7 +24,7 @@ public class LayoutController extends HttpServlet {
         
         String pagePath;
         
-        if (path.startsWith("/project")){
+        if (path == "/project" || path.startsWith("/project/")){
             pagePath = "/WEB-INF/pages/project.jsp";
         }
         else {
@@ -33,10 +33,19 @@ public class LayoutController extends HttpServlet {
                 case "/about":
                     pagePath = "/WEB-INF/pages/about.jsp";
                     break;
+                   
                 case "/hello":
-                    // Hello page also uses the layout
                     pagePath = "/WEB-INF/pages/hello.jsp";
                     break;
+                    
+                case "/projects":
+                    pagePath = "/WEB-INF/pages/projects.jsp";
+                    break;
+
+                case "/newproject":
+                    pagePath = "/WEB-INF/pages/newproject.jsp";
+                    break;
+
                 case "/":
                     pagePath = "/WEB-INF/pages/home.jsp";
                     break;

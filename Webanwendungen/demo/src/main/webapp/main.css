@@ -71,3 +71,7 @@ footer {
     padding: 2rem;
     margin-top: 2rem;
 }
+
+table td, table td * {
+    vertical-align: top;
+}
