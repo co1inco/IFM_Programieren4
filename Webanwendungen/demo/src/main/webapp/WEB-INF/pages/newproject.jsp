@@ -3,7 +3,7 @@
 <h1>Neues Projekt erstellen</h1>
 
 
-<form action="/myapp/newproject" method="post">
+<form action="/myapp/newproject" method="post" enctype="multipart/form-data">
     <fieldset>
         <label for="title">Titel</label>
         <input id="title" name="title" type="text"/>
@@ -41,6 +41,10 @@
             <option value="goal_ghi">Ziel GHI</option>
             <option value="goal_jkl">Ziel JKL</option>
         </select>
+        <br>
+
+        <label for="logo">Logo</label>
+        <input id="logo" name="logo" type="file" accept="image/png, image/jpeg">
     </fieldset>
 
     <input type="submit" value="Erstellen"/> 

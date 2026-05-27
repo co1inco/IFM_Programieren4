@@ -11,6 +11,7 @@
 </article>
 
 <article>
+    <h2>Neue Projekte</h2>
     <ul>
         <li>Projekt 1 <a href="project/1">hier</a></li>
         <li>Projekt 2 <a href="project/2">hier</a></li>
