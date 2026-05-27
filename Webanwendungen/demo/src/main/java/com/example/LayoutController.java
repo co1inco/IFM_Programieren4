@@ -25,7 +25,7 @@ public class LayoutController extends HttpServlet {
         String pagePath;
         
         if (path == "/project" || path.startsWith("/project/")){
-            pagePath = "/WEB-INF/pages/project.jsp";
+            pagePath = "/WEB-INF/pages" + path + ".jsp"; 
         }
         else {
             // Route requests to appropriate page

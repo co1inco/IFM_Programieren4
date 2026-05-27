@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +22,9 @@
 
         <nav>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.5em; color: yellow"/></a></li>
-                <li><a href="${pageContext.request.contextPath}/projects">Projekte</a></li>
-                <li><a href="${pageContext.request.contextPath}/newproject">Neues Projekt</a></li>
+                <li><a href="/myapp/index.html"><img src="/myapp/res/startseite.svg" style="max-height: 1.5em;"/></a></li>
+                <li><a href="/myapp/projects.html">Projekte</a></li>
+                <li><a href="/myapp/newproject.html">Neues Projekt</a></li>
             </ul>
         </nav>
     </header>
@@ -36,7 +35,30 @@
     <main class="container">
         
         <section>
-            <jsp:include page="${requestScope.page}" />    
+            <!-- <jsp:include page="${requestScope.page}" />     -->
+             <ul>
+                <li>
+                    <h3>Smart Campus Navigator</h3>
+                    <span>Intelligente Navigation und Raumverwaltung für den Hochschulcampus</span><br/>
+                    <a href="project/1.html">Zum Projekt</a>
+                </li>
+                <li>
+                    <h3>Parkplatz Survival</h3>
+                    <span>Intelligente Parkplatzsuche für den Hochschulcampus</span><br/>
+                    <a href="project/2.html">Zum Projekt</a>
+                </li>
+                <li>
+                    <h3>Projekt 3</h3>
+                    <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</span><br/>
+                    <a href="project/3.html">Zum Projekt</a>
+                </li>
+                <li>
+                    <h3>Projekt 4</h3>
+                    <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</span><br/>
+                    <a href="project/4.html">Zum Projekt</a>
+                </li>
+
+            </ul>
         </section>
         
     </main>
@@ -44,7 +66,7 @@
     <section>
         <div>
             <h3>Login</h3>
-            <form action="/myapp/submit" method="post">
+            <form action="/myapp/login.html" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
                     <label for="name">Username</label>
@@ -57,7 +79,7 @@
                 </fieldset>
             </form>
             
-            <span>Neu hier? <a href="register">Registrieren</a></span>
+            <span>Neu hier? <a href="/myapp/register">Registrieren</a></span>
         </div>
     </section>
     
@@ -66,9 +88,9 @@
         <nav>
             <ul>
                 <li><a href="#header">Zurück zum Anfang</a></li>
-                <li><a href="impresum">Impressum</a></li>
-                <li><a href="dsgvo">Datenschutzerklärung</a></li>
-                <li><a href="haftung">Haftungsausschluss</a></li>
+                <li><a href="/myapp/impresum">Impressum</a></li>
+                <li><a href="/myapp/dsgvo">Datenschutzerklärung</a></li>
+                <li><a href="/myapp/haftung">Haftungsausschluss</a></li>
             </ul>
         </nav>
         <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>        
