@@ -5,6 +5,10 @@ html, body {
     width: 100%;
 }
 
+body {
+    height: 100%
+}
+
 .back-to-top {
     position: fixed;
     right: 10px;
@@ -24,10 +28,11 @@ html, body {
 header {
     /* display: flex;
     flex-direction: row; */
-    min-height: 160px;
+    min-height: 150px;
 }
 
 .login-area {
+    background-color: red;
     text-align: right;
     justify-content: right;
     gap: 3px;
@@ -73,7 +78,12 @@ footer {
     text-align: center;
 }
 
+footer nav {
+    display: table;
+    margin: 0 auto;
+}
+
 footer a {
     color: inherit;
-    text-decoration-line: none;
+    /* text-decoration-line: none; */
 }

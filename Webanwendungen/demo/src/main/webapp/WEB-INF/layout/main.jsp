@@ -75,7 +75,8 @@
                 <a href="#header">Zurück zum Anfang</a> 
             </div>
         </nav>
-        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>        
+        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>    
+        <br/>    
     </footer>
 </body>
 </html>
