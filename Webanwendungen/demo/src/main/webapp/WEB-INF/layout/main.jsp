@@ -36,6 +36,7 @@
     <main class="container">
         
         <section>
+            <h2>Hello world</h2>
             <jsp:include page="${requestScope.page}" />    
         </section>
         

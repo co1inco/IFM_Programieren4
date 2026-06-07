@@ -10,12 +10,12 @@
   </servlet-mapping>
 
   <!-- LayoutController for page routing - only root path -->
-  <!-- <servlet>
+  <servlet>
     <servlet-name>LayoutController</servlet-name>
     <servlet-class>com.example.LayoutController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LayoutController</servlet-name>
     <url-pattern>/</url-pattern>
-  </servlet-mapping> -->
+  </servlet-mapping>
 </web-app>
