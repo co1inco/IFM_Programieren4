@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    height: 100%
+    height: 100%;
 }
 
 .back-to-top {
@@ -173,7 +173,7 @@ nav ul {
 }
 
 .project-header {
-    background-color: black;
+    background-color: #1B1C1D;
     color: white;
     padding: 10px 14px;
 }
@@ -189,7 +189,7 @@ nav ul {
 }
 
 .project-footer {
-    background-color: black;
+    background-color: #1B1C1D;
     color: white;
     padding: 5px;
     line-height: 1;
@@ -248,54 +248,132 @@ nav ul {
 }
 
 /* Css für Neues Projekt*/
-.new-project-from {
-    background-color: black;
-    color: white;
-    padding: 20px;
-    margin: 20px
+.new-project-form {
+    margin: 0;
 }
 
-.new-project-form fieldset {
-    border: none;
-}
-
-.new-project-form label {
-    display:block;
-    margin-top: 10px;
-    font-weight: bold;
+.new-project-form .prj-header {
+    padding-left: 20px;
+    padding-right: 40px;
 }
 
 .new-project-form input,
-.new-project-form select,
-.new-project-form textarea {
+.new-project-form textarea,
+.new-project-form select {
+    background-color: transparent;
+    border: 1px solid #888;
+    font: inherit;
+    color: black;
+
     width: 100%;
-    box-sizing:  border-box;
-    padding:6px
+    box-sizing: border-box;
+
+    padding: 8px;
+
+    transition: all 0.2s ease;
 }
 
-#topic,
-#description {
-    min-height: 100px;
+
+.new-project-form input:focus,
+.new-project-form textarea:focus,
+.new-project-form select:focus {
+    background-color: white;
+    border: 1px solid #00BFFF;
+    outline: none;
 }
 
 .logo-placeholder {
-    width: 220px;
-    height:160px;
-    background-color: white;
-    color: black;
-    border: 3px dashed #00BFFF;
+    width: 100px;
+    height: 100px;
+
+    border: 2px dashed #00BFFF;
+    border-radius: 8px;
+
+    color: white;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    text-align: center;
+
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
+}
+
+.logo-placeholder:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 #logo {
     display: none;
+}
+
+.new-project-title {
+    width: 450px !important;
+
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.prj-header label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prj-header label input {
+    width: 200px;
+}
+
+.new-project-table {
+    width: 100%;
+}
+
+.new-project-table td:first-child {
+    width: 180px;
+}
+
+.new-project-table input[type="date"] {
+    width: 250px;
+}
+
+.full-width-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#topic {
+    min-height: 120px;
+}
+
+#description {
+    min-height: 180px;
+}
+
+.goal-input {
+    margin-bottom: 8px;
+}
+
+.new-project-form input[type="submit"] {
+    display: block;
+
+    width: 180px;
+
+    margin: 30px auto;
+
+    padding: 12px;
+
+    background-color: #1B1C1D;
+    color: white;
+
+    border: none;
+    cursor: pointer;
+}
+
+.new-project-form input[type="submit"]:hover {
+    background-color: #00BFFF;
+    color: black;
 }
 
 footer {
