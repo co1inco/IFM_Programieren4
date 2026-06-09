@@ -23,7 +23,7 @@
         </picture>
 
         <div class="login-area">
-            <h3>Login</h3>
+            <b>Login</b>
             <form action="/myapp/submit" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>

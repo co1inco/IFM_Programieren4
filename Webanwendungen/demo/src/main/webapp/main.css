@@ -28,11 +28,11 @@ body {
 header {
     /* display: flex;
     flex-direction: row; */
-    min-height: 150px;
+    min-height: 120px;
 }
 
 .login-area {
-    background-color: red;
+    background-color: yellow;
     text-align: right;
     justify-content: right;
     gap: 3px;
