@@ -3,12 +3,12 @@
 <h1>Neues Projekt erstellen</h1>
 
 
-<form action="/myapp/newproject" method="post" enctype="multipart/form-data">
+<form class="new-project-form" action="/myapp/newproject" method="post" enctype="multipart/form-data">
     <fieldset>
         <label for="title">Titel</label>
         <input id="title" name="title" type="text"/>
         <br/>
-    
+
         <label for="start">Startdatum</label>
         <input id="start" name="start" type="date"/>
         <br/>
@@ -18,11 +18,11 @@
         <br/>
 
         <label for="topic">Kurzbeschreibung</label>
-        <input id="topic" name="topic" type="text"/>
+        <textarea id="topic" name="topic" type="text"></textarea>
         <br/>
 
         <label for="description">Beschreibung</label>
-        <textarea id="description" name="description"></textarea> 
+        <textarea id="description" name="description"></textarea>
         <br/>
 
         <label for="goal1">Ziel 1</label>
@@ -43,9 +43,12 @@
         </select>
         <br>
 
-        <label for="logo">Logo</label>
+        <label for="logo" class="logo-placeholder">
+            Logo auswählen
+        </label>
+
         <input id="logo" name="logo" type="file" accept="image/png, image/jpeg">
     </fieldset>
 
-    <input type="submit" value="Erstellen"/> 
+    <input type="submit" value="Erstellen"/>
 </form>
