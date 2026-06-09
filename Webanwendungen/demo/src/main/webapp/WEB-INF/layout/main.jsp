@@ -42,7 +42,7 @@
 
     </header>
 
-    <nav class="main-nav">
+    <nav class="main-nav hover-link">
         <ul>
             <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
             <li><a href="${pageContext.request.contextPath}/projects">Projekte</a></li>

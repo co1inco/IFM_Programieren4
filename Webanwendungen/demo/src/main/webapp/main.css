@@ -68,7 +68,7 @@ nav ul {
     font-weight: bold;
 }
 
-.main-nav a:hover {
+.hover-link a:hover {
     background-color: #87CEFA;
 }
 
@@ -243,13 +243,68 @@ footer a,
 
 /* Project */
 
-.content-list {
-    list-style: none;
+.prj-content {
+    margin: 0;
+    padding: 0;
+}
+
+.prj-content-list {
+    /* padding-left: 5px; */
     width: 200px;
     background-color: black;
     color: white;
+    border-left-color: red;
+    border-left-width: 7px;
+    border-left-style: solid;
 }
 
-.content-list a {
+/* .prj-content-list * {
+    width: 100%;
+} */
+
+.prj-content-list ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.prj-content-list a {
     color: inherit;
+    display: block;
+}
+
+.prj-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+    justify-content: space-between;
+    background-color: #1B1C1D;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.prj-header div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.prj-header img {
+    max-height: 100px;
+}
+
+.prj-header h1 {
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.comment-input {
+    background-color: transparent;
+}
+
+.comment-input:focus {
+    background-color: white;
 }

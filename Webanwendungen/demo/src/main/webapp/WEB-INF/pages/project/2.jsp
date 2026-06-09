@@ -4,22 +4,18 @@
 <table>
     <tr>
         <td>
-            <img src="/myapp/res/project/2_logo.png" style="max-width: 400px"/>
 
+            <div class="prj-header">
+                <div>
+                    <img src="/myapp/res/project/2_logo.png"/>
 
+                    <h1>Parkplatz Survival</h1>
+                </div>
 
-            <h1>Parkplatz Survival</h1>
+                <span id="leader"><strong>Projektleiter:</strong> Anna Musterfrau</span>
+            </div>
                 
             <table>
-                <tr id="leader">
-                    <td>
-                        <strong>Projektleiter:</strong>
-                    </td>
-                    <td>
-                        <span>Anna Musterfrau</span>
-                    </td>
-                </tr>
-
                 <tr id="topic">
                     <td>
                         <strong>Thema: </strong>
@@ -59,7 +55,7 @@
                 <form action="/myapp/project/1/comment" method="post">
                     <fieldset>
                         <label for="comment">Kommentar:</label>
-                        <textarea id="comment" name="comment"></textarea>
+                        <textarea id="comment" name="comment" class="comment-input"></textarea>
                     </fieldset>
                     <fieldset>
                         <label>Bewertung</label>
@@ -75,17 +71,9 @@
             </div>
         </td>
 
-        <td>
+        <td class="prj-content-list hover-link">
             <aside>
-            <h1>Inhalt</h1>
-            <ul>
-                <li><a href="#leader">Projektleiter</a></li>
-                <li><a href="#topic">Thema</a></li>
-                <li><a href="#description">Beschreibung</a></li>
-                <li><a href="#goals">Ziele</a></li>
-                <li><a href="#comments">Kommentare</a></li>
-            </ul>
-        </aside>
+            
         </td>
     </tr>
 </table>

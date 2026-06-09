@@ -1,25 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<table>
+<table class="prj-content">
     <tr>
         <td>
-            <img src="/myapp/res/project/1_logo.png" style="max-width: 400px"/>
+            <div class="prj-header">
+                <div>
+                    <img src="/myapp/res/project/1_logo.png"/>
 
+                    <h1>Smart Campus Navigator</h1>
+                </div>
 
-
-            <h1>Smart Campus Navigator</h1>
+                <span id="leader"><strong>Projektleiter:</strong> Max Mustermann</span>
+            </div>
                 
             <table style="vertical-align: top">
-                <tr id="leader">
-                    <td>
-                        <strong>Projektleiter:</strong>
-                    </td>
-                    <td>
-                        <span>Max Mustermann</span>
-                    </td>
-                </tr>
-
                 <tr id="topic">
                     <td>
                         <strong>Thema: </strong>
@@ -49,7 +44,11 @@
                         </ol>
                     </td>
                 </tr>
+                
+                <!-- dummy space to test sticky scrolling -->
+                <tr style="height: 500px">
 
+                </tr>
             </table>
             
 
@@ -59,7 +58,7 @@
                 <form action="/myapp/project/1/comment" method="post">
                     <fieldset>
                         <label for="comment">Kommentar:</label>
-                        <textarea id="comment" name="comment"></textarea>
+                        <textarea id="comment" name="comment" class="comment-input"></textarea>
                     </fieldset>
                     <fieldset>
                         <label>Bewertung</label>
@@ -75,8 +74,8 @@
             </div>
         </td>
 
-        <td>
-            <aside class="content-list">
+        <td class="prj-content-list hover-link">
+            <aside>
                 <h1>Inhalt</h1>
                 <ul>
                     <li><a href="#leader">Projektleiter</a></li>
