@@ -23,7 +23,7 @@
         </picture>
 
         <div class="login-area">
-            <h3>Login</h3>
+            <b>Login</b>
             <form action="/myapp/submit" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
@@ -42,7 +42,7 @@
 
     </header>
 
-    <nav class="main-nav">
+    <nav class="main-nav hover-link">
         <ul>
             <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
             <li><a href="${pageContext.request.contextPath}/projects">Projekte</a></li>
