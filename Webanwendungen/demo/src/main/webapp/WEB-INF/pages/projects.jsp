@@ -1,25 +1,70 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div class="project-overview-header">
+    <h1>Projektübersicht</h1>
 
-<ul>
-    <li>
-        <h3>Smart Campus Navigator</h3>
-        <span>Intelligente Navigation und Raumverwaltung für den Hochschulcampus</span><br/>
-        <a href="project/1">Zum Projekt</a>
+    <div class="filter-menu">
+        <span>Filter ▼</span>
+
+        <div class="filter-options">
+            <a href="#">Software</a><br/>
+            <a href="#">KI</a><br/>
+            <a href="#">Campus</a>
+        </div>
+    </div>
+</div>
+
+<ul class="project-list">
+    <li class="project-card">
+        <div class="project-header">
+            <h3>Smart Campus Navigator</h3>
+        </div>
+        <div class="project-content">
+            <span>
+                Intelligente Navigation und Raumverwaltung für den Hochschulcampus
+            </span>
+        </div>
+
+        <div class="project-footer">
+            <a href="project/1">Zum Projekt</a>
+        </div>
     </li>
-    <li>
-        <h3>Parkplatz Survival</h3>
-        <span>Intelligente Parkplatzsuche für den Hochschulcampus</span><br/>
-        <a href="project/2">Zum Projekt</a>
+
+    <li class="project-card">
+        <div class="project-header">
+            <h3>Parkplatz Survival</h3>
+        </div>
+        <div class="project-content">
+            <span>Intelligente Parkplatzsuche für den Hochschulcampus</span>
+        </div>
+
+        <div class="project-footer">
+            <a href="project/2">Zum Projekt</a>
+        </div>
     </li>
-    <li>
-        <h3>Projekt 3</h3>
-        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</span><br/>
-        <a href="project/3">Zum Projekt</a>
+
+    <li class="project-card">
+        <div class="project-header">
+            <h3>Campus Flohmarkt</h3>
+        </div>
+        <div class="project-content">
+            <span>Online Flohmarkt für Studierende</span>
+        </div>
+        <div class="project-footer">
+            <a href="project/3">Zum Projekt</a>
+        </div>
     </li>
-    <li>
-        <h3>Projekt 4</h3>
-        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</span><br/>
-        <a href="project/4">Zum Projekt</a>
+
+    <li class="project-card">
+        <div class="project-header">
+            <h3>Coffee Emergency System</h3>
+        </div>
+        <div class ="project-content">
+            <span>Schnell und einfach Kaffee auf dem Hochschulcampus finden</span>
+        </div>
+
+        <div class="project-footer">
+            <a href="project/4">Zum Projekt</a>
+        </div>
     </li>
 
 </ul>

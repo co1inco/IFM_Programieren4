@@ -72,6 +72,158 @@ nav ul {
     background-color: #87CEFA;
 }
 
+.welcome-area {
+    height: 500px;
+    width: 100%;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+}
+
+.welcome-area h1 {
+    position: relative;
+    width: 100%;
+    height: 1.4em;
+    font-size: 4em;
+}
+
+.welcome-line-one,
+.welcome-line-two {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+}
+
+.welcome-line-one {
+    animation-name: fadeOutWelcome;
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+}
+
+.welcome-line-two {
+    opacity: 0;
+    animation-name: fadeInWelcome;
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOutWelcome {
+    0% {
+        opacity: 1;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInWelcome {
+    0% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.home-two-columns {
+    display: flex;
+    width: 100%;
+}
+
+.home-info,
+.home-projects {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.home-info iframe {
+    max-width: 100%;
+}
+
+/* Css für die Projektübersichtsseite */
+.project-list {
+    list-style: none;
+    padding: 0;
+}
+
+.project-card {
+    margin: 15px 0;
+}
+
+.project-header {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.project-header h3 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.project-content {
+    background-color:antiquewhite;
+    padding: 5px;
+}
+
+.project-footer {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    line-height: 1;
+    text-align: center;
+}
+
+.project-overview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.filter-menu {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.filter-menu span {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.filter-options {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.filter-menu:hover .filter-options {
+    display: block;
+}
+
 footer {
     background-color: black;
     color: white;
@@ -83,7 +235,8 @@ footer nav {
     margin: 0 auto;
 }
 
-footer a {
+footer a,
+.project-footer a {
     color: inherit;
     /* text-decoration-line: none; */
 }
