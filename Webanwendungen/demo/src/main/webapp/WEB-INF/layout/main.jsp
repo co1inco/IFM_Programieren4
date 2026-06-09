@@ -53,12 +53,11 @@
     
     
     <!-- Main Content -->
-    <main class="container">
+    <main>
         
-        <section>
-            <h2>Hello world</h2>
-            <jsp:include page="${requestScope.page}" />    
-        </section>
+
+    <jsp:include page="${requestScope.page}" />
+
         
     </main>
     
