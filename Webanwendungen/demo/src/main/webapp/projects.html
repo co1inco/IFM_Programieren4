@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Colin,Jan">
+    <meta name="application-name" content="StudBoard">
+    <meta name="revisit-after" content="1">
+    <title>StudBoard</title>
+    <link rel="stylesheet" href="/myapp/main.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+
+        <picture>
+            <source media="(min-width: 1920px)" srcset="/myapp/res/header1920x200.png">
+            <source media="(min-width: 1280px)" srcset="/myapp/res/header1280x133.png">
+            <source media="(min-width: 640px)" srcset="/myapp/res/header640x67.png">
+            <img src="/myapp/res/header320x34.png">
+        </picture>
+
+        <div class="login-area">
+            <b>Login</b>
+            <form action="/myapp/submit" method="post">
+                <!-- <legend>Login</legend> -->
+                <fieldset>
+                    <label for="name">Username</label>
+                    <input id="name" name="name" type="text"/> <br/>
+
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password"/> <br/>
+
+                    <input type="submit" value="Login"/> 
+                </fieldset>
+            </form>
+            
+            <span>Neu hier? <a href="register">Registrieren</a></span>
+        </div>
+
+    </header>
+
+    <nav class="main-nav hover-link">
+        <ul>
+            <li><a href="/myapp/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
+            <li><a href="/myapp/projects.html">Projekte</a></li>
+            <li><a href="/myapp/newproject.html">Neues Projekt</a></li>
+        </ul>
+    </nav>
+    
+    
+    
+    <!-- Main Content -->
+    <main>
+                
+        <div class="project-overview-header">
+            <h1>Projektübersicht</h1>
+
+            <div class="filter-menu">
+                <span>Filter ▼</span>
+
+                <div class="filter-options">
+                    <a href="#">Software</a><br/>
+                    <a href="#">KI</a><br/>
+                    <a href="#">Campus</a>
+                </div>
+            </div>
+        </div>
+
+        <ul class="project-list">
+            <li class="project-card">
+                <div class="project-header">
+                    <h3>Smart Campus Navigator</h3>
+                </div>
+                <div class="project-content">
+                    <span>
+                        Intelligente Navigation und Raumverwaltung für den Hochschulcampus
+                    </span>
+                </div>
+
+                <div class="project-footer">
+                    <a href="project/1.html">Zum Projekt</a>
+                </div>
+            </li>
+
+            <li class="project-card">
+                <div class="project-header">
+                    <h3>Parkplatz Survival</h3>
+                </div>
+                <div class="project-content">
+                    <span>Intelligente Parkplatzsuche für den Hochschulcampus</span>
+                </div>
+
+                <div class="project-footer">
+                    <a href="project/2.html">Zum Projekt</a>
+                </div>
+            </li>
+
+            <li class="project-card">
+                <div class="project-header">
+                    <h3>Campus Flohmarkt</h3>
+                </div>
+                <div class="project-content">
+                    <span>Online Flohmarkt für Studierende</span>
+                </div>
+                <div class="project-footer">
+                    <a href="project/3.html">Zum Projekt</a>
+                </div>
+            </li>
+
+            <li class="project-card">
+                <div class="project-header">
+                    <h3>Coffee Emergency System</h3>
+                </div>
+                <div class ="project-content">
+                    <span>Schnell und einfach Kaffee auf dem Hochschulcampus finden</span>
+                </div>
+
+                <div class="project-footer">
+                    <a href="project/4.html">Zum Projekt</a>
+                </div>
+            </li>
+
+        </ul>
+
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="impresum">Impressum</a></li>
+                <li><a href="dsgvo">Datenschutzerklärung</a></li>
+                <li><a href="haftung">Haftungsausschluss</a></li>
+            </ul>
+
+            <div class="back-to-top">
+                <a href="#header">Zurück zum Anfang</a> 
+            </div>
+        </nav>
+        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>    
+        <br/>    
+    </footer>
+</body>
+</html>
