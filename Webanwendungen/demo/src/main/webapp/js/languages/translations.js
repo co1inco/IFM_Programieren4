@@ -70,8 +70,25 @@ export const translations = new Map([
     ])]
 ]);
 
-export function translate(language, key) {
-    const selectedLanguage = translations.get(language);
+var current_language = "en";
+
+/**
+ * 
+ * @param {string} lang_id 
+ */
+export function setLanguage(lang_id) {
+
+    if (translations.has(lang_id)) {
+        current_language = lang_id
+    }
+    else {
+        console.warn("Unknown language: ", lang_id);
+    }
+
+}
+
+export function translate(key) {
+    const selectedLanguage = translations.get(current_language);
 
     if (!selectedLanguage) {
         return key;

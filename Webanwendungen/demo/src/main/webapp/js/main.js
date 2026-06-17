@@ -5,7 +5,7 @@ import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate } from "./languages/translations.js";
 
 console.log(
-    "Projekt 1:",
+    "Laufzeit Projekt 1:",
     ProjectService.calculateProjectDuration(
         1,
         artifacts,
@@ -14,7 +14,7 @@ console.log(
 );
 
 console.log(
-    "Projekt 2:",
+    "Laufzeit Projekt 2:",
     ProjectService.calculateProjectDuration(
         2,
         artifacts,
@@ -23,7 +23,7 @@ console.log(
 );
 
 console.log(
-    "Projekt 3:",
+    "Laufzeit Projekt 3:",
     ProjectService.calculateProjectDuration(
         3,
         artifacts,
@@ -45,12 +45,36 @@ console.table(
     )
 );
 
-console.log("Deutsch:", translate("de", "project"));
-console.log("Englisch:", translate("en", "project"));
-console.log("Unbekannter Schlüssel:", translate("de", "unknownKey"));
 
-console.log("Deutsch:", translate("de", "imprint"));
-console.log("Englisch:", translate("en", "imprint"));
+const lang_keys = [
+    "project",
+    "imprint",
+    "projectLeader",
+    "unknownKey"
+]
 
-console.log("Deutsch:", translate("de", "projectLeader"));
-console.log("Englisch:", translate("en", "projectLeader"));
+console.log("=== Default language");
+lang_keys.forEach(k => console.log(k, ": ", translate(k)));
+
+console.log("=== English");
+setLanguage("en");
+lang_keys.forEach(k => console.log(k, ": ", translate(k)));
+
+console.log("=== German");
+setLanguage("de");
+lang_keys.forEach(k => console.log(k, ": ", translate(k)));
+
+console.log("=== Unknown");
+setLanguage("un");
+lang_keys.forEach(k => console.log(k, ": ", translate(k)));
+
+
+setLanguage("en");
+function initializeTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.dataset.i18n;
+    element.textContent = translate(key);
+  });
+}
+
+initializeTranslations();
