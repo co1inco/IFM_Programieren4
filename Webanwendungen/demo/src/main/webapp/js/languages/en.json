@@ -1,0 +1,34 @@
+{
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register",
+    "newHere": "New here?",
+
+    "project": "Project",
+    "projects": "Projects",
+    "projectOverview": "Project Overview",
+    "newProject": "New Project",
+
+    "shortDescription": "Short Description",
+    "description": "Description",
+    "topic": "Topic",
+    "goals": "Goals",
+    "comments": "Comments",
+    "content": "Contents",
+
+    "projectLeader": "Project Leader",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+
+    "logoSelect": "Select Logo",
+    "create": "Create",
+    "viewProject": "View Project",
+    "filter": "Filter",
+
+    "imprint": "Legal Notice",
+    "privacyPolicy": "Privacy Policy",
+    "disclaimer": "Disclaimer",
+    "contact": "Contact",
+    "backToTop": "Back to Top"
+}

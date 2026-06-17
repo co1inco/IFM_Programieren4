@@ -4,6 +4,9 @@ import { ProjectService } from "./service/ProjectService.js";
 import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate, setLanguage } from "./languages/translations.js";
 
+// make sure setLanguage is available to the buttons
+window.setLanguage = setLanguage;
+
 console.log(
     "Laufzeit Projekt 1:",
     ProjectService.calculateProjectDuration(
@@ -72,24 +75,16 @@ console.log("=== Default language");
 lang_keys.forEach(k => console.log(k, ": ", translate(k)));
 
 console.log("=== English");
-setLanguage("en");
+await setLanguage("en");
 lang_keys.forEach(k => console.log(k, ": ", translate(k)));
 
 console.log("=== German");
-setLanguage("de");
+await setLanguage("de");
 lang_keys.forEach(k => console.log(k, ": ", translate(k)));
 
 console.log("=== Unknown");
-setLanguage("un");
+await setLanguage("un");
 lang_keys.forEach(k => console.log(k, ": ", translate(k)));
 
 
-setLanguage("en");
-function initializeTranslations() {
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.dataset.i18n;
-    element.textContent = translate(key);
-  });
-}
-
-initializeTranslations();
+await setLanguage("de");
