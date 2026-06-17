@@ -54,3 +54,31 @@ console.log("Englisch:", translate("en", "imprint"));
 
 console.log("Deutsch:", translate("de", "projectLeader"));
 console.log("Englisch:", translate("en", "projectLeader"));
+
+
+console.log("--- Getter / Setter Test ---");
+const testProject = projects[0];
+
+console.log("Kurzbeschreibung:");
+console.log(testProject.shortDescription);
+
+testProject.shortDescription = "Neue Beschreibung für das Projekt";
+
+console.log("Neue Beschreibung:", testProject.shortDescription);
+
+try {
+    testProject.shortDescription = "a".repeat(300);
+}
+catch (error) {
+    console.log("Setter funktioniert:");
+    console.log(error.message);
+}
+
+console.log("--- String Validation Test ---");
+
+try {
+    testProject.shortDescription = 123;
+}
+catch (error) {
+    console.log(error.message);
+}

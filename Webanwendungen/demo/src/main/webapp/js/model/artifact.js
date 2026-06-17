@@ -22,6 +22,11 @@ export class Artifact {
     }
 
     set shortDescription(value) {
+
+        if (typeof value !== "string") {
+            throw new Error("Short description must be a string.");
+        }
+
         if (value.length > 255) {
             throw new Error("Short description must not exceed 255 characters.");
         }
