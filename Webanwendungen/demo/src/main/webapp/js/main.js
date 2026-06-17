@@ -2,11 +2,16 @@
 import { projects, artifacts, projectArtifacts } from "./testdata.js";
 import { ProjectService } from "./service/ProjectService.js";
 import { ProjectSorter } from "./service/ProjectSorter.js";
-import { translate } from "./languages/translations.js";
+import { translate, setLanguage } from "./languages/translations.js";
 
 console.log(
     "Laufzeit Projekt 1:",
     ProjectService.calculateProjectDuration(
+        1,
+        artifacts,
+        projectArtifacts
+    ),
+    ProjectService.calculateCurrentProjectDuration(
         1,
         artifacts,
         projectArtifacts
@@ -19,12 +24,22 @@ console.log(
         2,
         artifacts,
         projectArtifacts
+    ),
+    ProjectService.calculateCurrentProjectDuration(
+        2,
+        artifacts,
+        projectArtifacts
     )
 );
 
 console.log(
     "Laufzeit Projekt 3:",
     ProjectService.calculateProjectDuration(
+        3,
+        artifacts,
+        projectArtifacts
+    ),
+    ProjectService.calculateCurrentProjectDuration(
         3,
         artifacts,
         projectArtifacts
