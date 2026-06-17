@@ -1,47 +1,47 @@
-import { artefakte, projektArtefakte } from "./testdaten.js";
-import { ProjektService } from "./service/ProjektService.js";
-import { projekte } from "./testdaten.js";
-import { ProjektSorter } from "./service/ProjektSorter.js";
+
+import { projects, artifacts, projectArtifacts } from "./testdata.js";
+import { ProjectService } from "./service/ProjectService.js";
+import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate } from "./languages/translations.js";
 
 console.log(
     "Projekt 1:",
-    ProjektService.berechneProjektlaufzeit(
+    ProjectService.calculateProjectDuration(
         1,
-        artefakte,
-        projektArtefakte
+        artifacts,
+        projectArtifacts
     )
 );
 
 console.log(
     "Projekt 2:",
-    ProjektService.berechneProjektlaufzeit(
+    ProjectService.calculateProjectDuration(
         2,
-        artefakte,
-        projektArtefakte
+        artifacts,
+        projectArtifacts
     )
 );
 
 console.log(
     "Projekt 3:",
-    ProjektService.berechneProjektlaufzeit(
+    ProjectService.calculateProjectDuration(
         3,
-        artefakte,
-        projektArtefakte
+        artifacts,
+        projectArtifacts
     )
 );
 
 console.log("Sortiert nach Startdatum:");
 console.table(
-    ProjektSorter.sortiereNachStartdatum(projekte)
+    ProjectSorter.sortByStartDate(projects)
 );
 
 console.log("Sortiert nach Projektlaufzeit:");
 console.table(
-    ProjektSorter.sortiereNachProjektlaufzeit(
-        projekte,
-        artefakte,
-        projektArtefakte
+    ProjectSorter.sortByProjectDuration(
+        projects,
+        artifacts,
+        projectArtifacts
     )
 );
 
