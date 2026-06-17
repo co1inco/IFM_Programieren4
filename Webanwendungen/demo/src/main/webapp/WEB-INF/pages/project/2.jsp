@@ -15,7 +15,7 @@
                 <span id="leader"><strong>Projektleiter:</strong> Anna Musterfrau</span>
             </div>
                 
-            <table>
+            <table class="new-project-table">
                 <tr id="topic">
                     <td>
                         <strong>Thema: </strong>

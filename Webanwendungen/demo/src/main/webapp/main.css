@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    height: 100%
+    height: 100%;
 }
 
 .back-to-top {
@@ -162,16 +162,20 @@ nav ul {
 .project-list {
     list-style: none;
     padding: 0;
+    margin: 0 20px 30px 20px;
 }
 
 .project-card {
-    margin: 15px 0;
+    margin: 18px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid black;
 }
 
 .project-header {
-    background-color: black;
+    background-color: #1B1C1D;
     color: white;
-    padding: 10px;
+    padding: 10px 14px;
 }
 
 .project-header h3 {
@@ -180,12 +184,12 @@ nav ul {
 }
 
 .project-content {
-    background-color:antiquewhite;
+    background-color: white;
     padding: 5px;
 }
 
 .project-footer {
-    background-color: black;
+    background-color: #1B1C1D;
     color: white;
     padding: 5px;
     line-height: 1;
@@ -196,32 +200,190 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+
+    margin: 30px 20px 20px 20px;
 }
 
 .filter-menu {
     position: relative;
     display: inline-block;
-    margin-bottom: 20px;
 }
 
 .filter-menu span {
+    display: inline-block;
     background-color: black;
     color: white;
-    padding: 10px;
+    padding: 10px 14px;
     cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
 .filter-options {
     display: none;
     position: absolute;
+    right: 0;
+    top: 100%;
+
+    min-width: 130px;
     background-color: white;
     border: 1px solid black;
-    padding: 10px;
+    padding: 8px;
+    z-index:10;
+}
+
+.filter-options a:hover {
+    display: block;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.filter-options a:hover {
+    background-color: #87CEFA;
 }
 
 .filter-menu:hover .filter-options {
     display: block;
+}
+
+/* Css für Neues Projekt*/
+.new-project-form {
+    margin: 0;
+}
+
+.new-project-form .prj-header {
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+.new-project-form input,
+.new-project-form textarea,
+.new-project-form select {
+    background-color: transparent;
+    border: 1px solid #888;
+    font: inherit;
+    color: black;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 8px;
+
+    transition: all 0.2s ease;
+}
+
+
+.new-project-form input:focus,
+.new-project-form textarea:focus,
+.new-project-form select:focus {
+    background-color: white;
+    border: 1px solid #00BFFF;
+    outline: none;
+}
+
+.logo-placeholder {
+    width: 100px;
+    height: 100px;
+
+    border: 2px dashed #00BFFF;
+    border-radius: 8px;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.logo-placeholder:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+#logo {
+    display: none;
+}
+
+.new-project-title {
+    width: 450px !important;
+
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    color: white !important;
+}
+
+.prj-header label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prj-header label input {
+    width: 200px;
+    color: white;
+}
+
+.new-project-title:focus,
+.prj-header label input:focus {
+    color: black !important;
+}
+
+.new-project-table {
+    width: 100%;
+}
+
+.new-project-table td:first-child {
+    width: 180px;
+}
+
+.new-project-table input[type="date"] {
+    width: 250px;
+}
+
+.full-width-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#topic {
+    min-height: 120px;
+    height: 120px;
+}
+
+#description {
+    min-height: 180px;
+    height: 180px;
+}
+
+.goal-input {
+    margin-bottom: 8px;
+}
+
+.new-project-form input[type="submit"] {
+    display: block;
+
+    width: 180px;
+
+    margin: 30px auto;
+
+    padding: 12px;
+
+    background-color: #1B1C1D;
+    color: white;
+
+    border: none;
+    cursor: pointer;
+}
+
+.new-project-form input[type="submit"]:hover {
+    background-color: #00BFFF;
+    color: black;
 }
 
 footer {

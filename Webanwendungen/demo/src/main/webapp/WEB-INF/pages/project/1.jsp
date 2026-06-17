@@ -14,7 +14,7 @@
                 <span id="leader"><strong>Projektleiter:</strong> Max Mustermann</span>
             </div>
                 
-            <table style="vertical-align: top">
+            <table class="new-project-table" style="vertical-align: top">
                 <tr id="topic">
                     <td>
                         <strong>Thema: </strong>
