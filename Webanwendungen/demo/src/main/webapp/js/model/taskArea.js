@@ -8,10 +8,16 @@ export class TaskArea {
      * @param {string} kurzbeschreibung
      */
     constructor(id, title, shortDescription) {
-        this.id = id;
-        this.title = title;
-        this.shortDescription = shortDescription;
+        this._id = id;
+        this._title = title;
+        this._shortDescription = shortDescription;
     }
+
+    get id() { return this._id; }
+
+    get title() { return this._title; }
+    set title(value) { this._title = value; }
+
 
     get shortDescription() {
         return this._shortDescription;
