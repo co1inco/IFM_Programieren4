@@ -1,5 +1,5 @@
 
-import { projects, artifacts, projectArtifacts } from "./testdata.js";
+// import { projects, artifacts, projectArtifacts } from "./testdata.js";
 import { ProjectService } from "./service/ProjectService.js";
 import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate, setLanguage } from "./languages/translations.js";
@@ -12,9 +12,9 @@ import { Artifact } from "./model/artifact.js";
 
 import { resendStoredData } from "./api/projectApi.js";
 
-loadProjects();
-loadTaskAreas();
-loadArtifacts();
+const projects = await loadProjects();
+const taskAreas = await loadTaskAreas();
+const artifacts = await loadArtifacts();
 
 const testProject = new Project(
     99,

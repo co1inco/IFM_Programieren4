@@ -3,8 +3,12 @@ import { TaskArea } from "../model/taskArea.js";
 import { Artifact } from "../model/artifact.js"
 
 
+const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
+const STORAGE_KEY = "pendingData";
+
+
 export function loadProjects() {
-    return fetch("/myapp/js/data/projects.json")
+    return fetch("/myapp/api/projects.json")
         .then(response => response.json())
         .then(data => {
 
@@ -33,7 +37,7 @@ export function loadProjects() {
 }
 
 export function loadTaskAreas() {
-    return fetch("/myapp/js/data/tasks.json")
+    return fetch("/myapp/api/tasks.json")
         .then(response => response.json())
         .then(data => {
             console.log("Aufgabe 2:");
@@ -59,7 +63,7 @@ export function loadTaskAreas() {
 }
 
 export function loadArtifacts() {
-    return fetch("/myapp/js/data/artifacts.json")
+    return fetch("/myapp/api/artifacts.json")
         .then(response => response.json())
         .then(data => {
             console.log("Aufgabe 2:");
@@ -84,8 +88,6 @@ export function loadArtifacts() {
         });
 }
 
-const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
-const STORAGE_KEY = "pendingData";
 
 export function sendProjectData(project, taskArea, artifact) {
     const data = {
