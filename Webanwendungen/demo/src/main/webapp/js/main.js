@@ -3,7 +3,55 @@ import { projects, artifacts, projectArtifacts } from "./testdata.js";
 import { ProjectService } from "./service/ProjectService.js";
 import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate, setLanguage } from "./languages/translations.js";
+import { loadProjects, loadTaskAreas, loadArtifacts } from "./api/projectApi.js"
 
+import { sendProjectData } from "./api/projectApi.js";
+import { Project } from "./model/Project.js";
+import { TaskArea } from "./model/taskArea.js";
+import { Artifact } from "./model/artifact.js";
+
+import { resendStoredData } from "./api/projectApi.js";
+
+loadProjects();
+loadTaskAreas();
+loadArtifacts();
+
+const testProject = new Project(
+    99,
+    "Testprojekt",
+    "Blabla",
+    "Blablabla",
+    "",
+    "Colin und Jan",
+    "2026-06-24",
+    "2026-7-01"
+);
+
+const testTaskArea = new TaskArea(
+    100,
+    "Testaufgabe",
+    "WBA Aufgabe",
+    "Javascript",
+    "2:00",
+    null,
+    100
+);
+
+const testArtifact = new Artifact(
+    101,
+    "testartefakt",
+    "Kurz",
+    "Lang",
+    "1:00",
+    null,
+    101
+);
+
+sendProjectData(testProject, testTaskArea, testArtifact)
+
+resendStoredData();
+
+/*
 // make sure setLanguage is available to the buttons
 window.setLanguage = setLanguage;
 
@@ -115,3 +163,4 @@ await setLanguage("un");
 lang_keys.forEach(k => console.log(k, ": ", translate(k)));
 
 await setLanguage("de");
+ */

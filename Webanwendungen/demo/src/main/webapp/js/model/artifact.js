@@ -9,12 +9,14 @@ export class Artifact {
      * @param {int} aufgabenbereichId
      * @param {float} geplanteArbeitszeit
      */
-    constructor(id, title, shortDescription, taskAreaId, plannedWorkingTime) {
+    constructor(id, title, shortDescription, longDescription,plannedWorkingTime, realTime , taskAreaId) {
         this._id = id;
         this._title = title;
         this._shortDescription = shortDescription;
-        this._taskAreaId = taskAreaId;
+        this._longDescription = longDescription;
         this._plannedWorkingTime = plannedWorkingTime;
+        this._realTime = realTime;
+        this._taskAreaId = taskAreaId;
     }
 
 

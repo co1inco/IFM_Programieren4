@@ -7,10 +7,14 @@ export class TaskArea {
      * @param {string} titel
      * @param {string} kurzbeschreibung
      */
-    constructor(id, title, shortDescription) {
+    constructor(id, title, shortDescription, longDescription, plannedTime, realTime, taskId) {
         this._id = id;
         this._title = title;
         this._shortDescription = shortDescription;
+        this._longDescription = longDescription;
+        this._plannedTime = plannedTime;
+        this._realTime = realTime;
+        this._taskId = taskId;
     }
 
     get id() { return this._id; }

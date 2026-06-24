@@ -6,15 +6,21 @@ export class Project {
      * @param {int} id
      * @param {string} titel
      * @param {string} kurzbeschreibung
+     * @param {string} langsbeschreibung
      * @param {string} logoPfad
+     * @param {string} hauptveranwortlicher
      * @param {Date} startdatum
+     * @param {Date} enddatum
      */
-    constructor(id, title, shortDescription, logoPath, startDate) {
+    constructor(id, title, shortDescription, longDescription, logoPath, maintainer, startDate, endDate) {
         this._id = id;
         this._title = title;
         this._shortDescription = shortDescription;
+        this._longDescription = longDescription;
         this._logoPath = logoPath;
+        this._maintainer = maintainer;
         this._startDate = new Date(startDate);
+        this._endDate = new Date(endDate);
     }
 
     get id() { return this._id; }
