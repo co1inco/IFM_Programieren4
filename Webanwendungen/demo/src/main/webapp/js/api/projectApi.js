@@ -3,7 +3,8 @@ import { TaskArea } from "../model/taskArea.js";
 import { Artifact } from "../model/artifact.js"
 
 
-const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
+const API_URL = "/WBA/projectsAPI";
+// const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
 const STORAGE_KEY = "pendingData";
 
 
@@ -109,9 +110,7 @@ export function sendProjectData(project, taskArea, artifact) {
             console.log("API status:", response.status);
 
             if (!response.ok) {
-                console.warn("API request failed. Saving data locally.");
-                saveDataLocally(data);
-                return false;
+                throw new Error(response.statusText);
             }
 
             console.log("Data successfully sent.");
