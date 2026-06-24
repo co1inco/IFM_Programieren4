@@ -1,6 +1,7 @@
 import http.server
 import socketserver
 from urllib.parse import urlparse
+import random
 import urllib.request
 import os
 
@@ -21,11 +22,14 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         return super().do_GET()
     
     def do_POST(self):
-        self.send_error(404, "Page does not exist")
-        # self.send_response(200)
-        # self.send_header('Content-type', 'application/json')
-        # self.end_headers()
-        # self.wfile.write(b'{"status": "success"}')
+        
+        if random.uniform(0, 1) < 0.5:
+            self.send_error(404, "Page does not exist")
+        else:
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(b'{"status": "success"}')
         
 
 with socketserver.TCPServer(("", PORT), MyHandler):

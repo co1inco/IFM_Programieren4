@@ -13,8 +13,16 @@ import { Artifact } from "./model/artifact.js";
 import { resendStoredData } from "./api/projectApi.js";
 
 const projects = await loadProjects();
+console.log("Aufgabe 3: Projects: ", projects);
 const taskAreas = await loadTaskAreas();
+console.log("Aufgabe 3: TaskAreas: ", taskAreas);
 const artifacts = await loadArtifacts();
+console.log("Aufgabe 3: Artifacts", artifacts);
+
+console.log("Project 1 artifacts", projects[0].get_artifacts(taskAreas, artifacts));
+console.log("Project 2 artifacts", projects[1].get_artifacts(taskAreas, artifacts));
+console.log("Project 3 artifacts", projects[2].get_artifacts(taskAreas, artifacts));
+
 
 const testProject = new Project(
     99,
@@ -47,9 +55,11 @@ const testArtifact = new Artifact(
     101
 );
 
+resendStoredData();
+
 sendProjectData(testProject, testTaskArea, testArtifact)
 
-resendStoredData();
+
 
 /*
 // make sure setLanguage is available to the buttons

@@ -28,8 +28,8 @@ export function loadProjects() {
             )
             );
 
-            console.log("Aufgabe 3:");
-            console.log("Project objects:", projects);
+            // console.log("Aufgabe 3:");
+            // console.log("Project objects:", projects);
             return projects;
         })
         .catch(error => {
@@ -41,22 +41,18 @@ export function loadTaskAreas() {
     return fetch("/myapp/api/tasks.json")
         .then(response => response.json())
         .then(data => {
-            console.log("Aufgabe 2:");
-            console.log("Loaded task areas:", data);
+            console.log("Aufgabe 2: Loaded task areas:", data);
 
             const tasks = data.map(p => new TaskArea(
                 p.id,
                 p.name,
                 p.shortdesc,
-                p.longdesc,
-                p.planedtime,
-                p.realtime,
-                p.taskid
-            )
-            );
+                p.project
+            ));
 
-            console.log("Aufgabe 3:");
-            console.log("Task objects:", tasks)
+            // console.log("Aufgabe 3:");
+            // console.log("Task objects:", tasks)
+            return tasks;
         })
         .catch(error => {
             console.error("Failed to load task areas:", error);
@@ -67,9 +63,8 @@ export function loadArtifacts() {
     return fetch("/myapp/api/artifacts.json")
         .then(response => response.json())
         .then(data => {
-            console.log("Aufgabe 2:");
-            console.log("Loaded artifacts:", data);
-
+            console.log("Aufgabe 2: Loaded artifacts:", data);
+            
             const artifacts = data.map(p => new Artifact(
                 p.id,
                 p.name,
@@ -81,8 +76,9 @@ export function loadArtifacts() {
             )
             );
 
-            console.log("Aufgabe 3:");
-            console.log("Artifact object:", artifacts)
+            // console.log("Aufgabe 3:");
+            // console.log("Artifact object:", artifacts)
+            return artifacts;
         })
         .catch(error => {
             console.error("Failed to load artifacts:", error);
@@ -152,7 +148,7 @@ export function resendStoredData() {
 
     const data = JSON.parse(storedData);
 
-    sendProjectData(
+    return sendProjectData(
         data.project,
         data.taskArea,
         data.artifact

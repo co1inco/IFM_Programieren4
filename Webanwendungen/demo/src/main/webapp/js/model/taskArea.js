@@ -7,17 +7,15 @@ export class TaskArea {
      * @param {string} titel
      * @param {string} kurzbeschreibung
      */
-    constructor(id, title, shortDescription, longDescription, plannedTime, realTime, taskId) {
+    constructor(id, title, shortDescription, projectId) {
         this._id = id;
         this._title = title;
         this._shortDescription = shortDescription;
-        this._longDescription = longDescription;
-        this._plannedTime = plannedTime;
-        this._realTime = realTime;
-        this._taskId = taskId;
+        this._projectId = projectId;
     }
 
     get id() { return this._id; }
+    get projectId() { return this._projectId; }
 
     get title() { return this._title; }
     set title(value) { this._title = value; }
@@ -38,5 +36,9 @@ export class TaskArea {
         }
 
         this._shortDescription = value;
+    }
+
+    get_artifacts(artifacts) {
+        return artifacts.filter(x => x.taskAreaId === this.id);
     }
 }

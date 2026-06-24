@@ -50,4 +50,15 @@ export class Project {
 
         this._shortDescription = value;
     }
+
+    get_task_areas(tasks) {
+        return tasks.filter(x => x.projectId === this.id);
+    }
+
+    get_artifacts(tasks, artifacts) {
+        return this.get_task_areas(tasks)
+            .flatMap(x => x.get_artifacts(artifacts))
+            .filter((v,i,a)=>a.indexOf(v)==i); // distinct
+    }
+
 }

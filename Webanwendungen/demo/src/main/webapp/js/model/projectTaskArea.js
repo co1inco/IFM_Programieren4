@@ -19,5 +19,4 @@ export class ProjectTaskArea {
 
     get taskAreaId() { return this._taskAreaId; }
     set taskAreaId(value) { this._taskAreaId = value; }
-
 }
