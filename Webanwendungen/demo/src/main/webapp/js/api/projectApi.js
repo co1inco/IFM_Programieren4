@@ -86,14 +86,40 @@ export function loadArtifacts() {
 }
 
 
-export function sendProjectData(project, taskArea, artifact) {
-    const data = {
-        project: project,
-        taskArea: taskArea,
-        artifact: artifact
-    };
+function saveDataLocally(data) {
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+    );
 
-    console.log("Sending data to API....");
+    console.log("Data stored in LocalStorage.");
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+}
+
+function loadDataLocally() {
+    const storedData = localStorage.getItem(STORAGE_KEY);
+    if (!storedData) {
+        // console.log("Local storage empty");
+        return null;
+    }
+
+    // console.log("Local storage: ", storedData);
+    return JSON.parse(storedData);
+}
+
+export function sendProjectData(projects, taskArea, artifact) {
+    projects = Array.isArray(projects) ? projects : [projects];
+    taskArea = Array.isArray(taskArea) ? taskArea : [taskArea];
+    artifact = Array.isArray(artifact) ? artifact : [artifact];
+
+    const local_data = loadDataLocally();
+    const data = {
+        projects: [...local_data?.projects ?? [], ...projects ],
+        tasks: [...local_data?.tasks ?? [], ...taskArea ],
+        artifacts: [...local_data?.artifacts ?? [], ...artifact]
+    }
+
+    console.log("Sending data to API....", data);
 
     return fetch(API_URL, {
         method: "POST",
@@ -112,6 +138,7 @@ export function sendProjectData(project, taskArea, artifact) {
             console.log("Data successfully sent.");
 
             localStorage.removeItem(STORAGE_KEY);
+            // console.log("Removed?: ", JSON.parse(localStorage.getItem(STORAGE_KEY)));
             console.log("Stored data removed from LocalStorage.");
 
             return true;
@@ -126,19 +153,10 @@ export function sendProjectData(project, taskArea, artifact) {
         });
 }
 
-function saveDataLocally(data) {
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-    );
 
-    console.log("Data stored in LocalStorage.");
-    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
-}
 
 export function resendStoredData() {
-    const storedData = localStorage.getItem(STORAGE_KEY);
-
+    const storedData = loadDataLocally();
     if (!storedData) {
         console.log("No stored data found.");
         return;
@@ -146,11 +164,5 @@ export function resendStoredData() {
 
     console.log("Stored data found. Trying to resend....");
 
-    const data = JSON.parse(storedData);
-
-    return sendProjectData(
-        data.project,
-        data.taskArea,
-        data.artifact
-    );
+    return sendProjectData([], [], []);
 }

@@ -23,6 +23,11 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
     
     def do_POST(self):
         
+        content_len = self.headers.get("Content-Length")
+        if content_len is not None:
+            body = self.rfile.read(int(content_len))
+            print(body)
+        
         if random.uniform(0, 1) < 0.5:
             self.send_error(404, "Page does not exist")
         else:
