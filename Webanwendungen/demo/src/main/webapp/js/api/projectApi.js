@@ -3,13 +3,21 @@ import { TaskArea } from "../model/taskArea.js";
 import { Artifact } from "../model/artifact.js"
 
 
-const API_URL = "/WBA/projectsAPI";
+// const API_URL = "/myapp/api";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
+const API_URL = "https://scl.fh-bielefeld.de/WBA";
 const STORAGE_KEY = "pendingData";
+
+const get_options = {
+    method: "GET",
+    mode: "no-cors",
+    credentials: 'same-origin',
+    cache: "no-store"
+}
 
 
 export function loadProjects() {
-    return fetch("/myapp/api/projects.json")
+    return fetch(API_URL + "/projects.json", get_options)
         .then(response => response.json())
         .then(data => {
 
@@ -38,7 +46,7 @@ export function loadProjects() {
 }
 
 export function loadTaskAreas() {
-    return fetch("/myapp/api/tasks.json")
+    return fetch(API_URL + "/tasks.json", get_options)
         .then(response => response.json())
         .then(data => {
             console.log("Aufgabe 2: Loaded task areas:", data);
@@ -60,7 +68,7 @@ export function loadTaskAreas() {
 }
 
 export function loadArtifacts() {
-    return fetch("/myapp/api/artifacts.json")
+    return fetch(API_URL + "/artefacts.json", get_options)
         .then(response => response.json())
         .then(data => {
             console.log("Aufgabe 2: Loaded artifacts:", data);
@@ -121,13 +129,14 @@ export function sendProjectData(projects, taskArea, artifact) {
 
     console.log("Sending data to API....", data);
 
-    return fetch(API_URL, {
+    return fetch(API_URL + "/projectsAPI", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data),
-        mode: "cors"
+        mode: "no-cors",
+        credentials: 'same-origin'
     })
         .then(response => {
             console.log("API status:", response.status);
