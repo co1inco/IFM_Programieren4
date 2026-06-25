@@ -126,7 +126,8 @@ export function sendProjectData(projects, taskArea, artifact) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        mode: "cors"
     })
         .then(response => {
             console.log("API status:", response.status);
