@@ -3,14 +3,14 @@ import { TaskArea } from "../model/taskArea.js";
 import { Artifact } from "../model/artifact.js"
 
 
-// const API_URL = "/myapp/api";
+const API_URL = "/myapp/api";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
-const API_URL = "https://scl.fh-bielefeld.de/WBA";
+// const API_URL = "https://scl.fh-bielefeld.de/WBA";
 const STORAGE_KEY = "pendingData";
 
 const get_options = {
     method: "GET",
-    mode: "no-cors",
+    // mode: "no-cors",
     credentials: 'same-origin',
     cache: "no-store"
 }
@@ -20,7 +20,7 @@ export function loadProjects() {
     return fetch(API_URL + "/projects.json", get_options)
         .then(response => response.json())
         .then(data => {
-
+            
             console.log("Aufgabe 1:");
             console.log("Loaded projects:", data);
 
