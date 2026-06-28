@@ -3,7 +3,7 @@ set -euo pipefail
 
 ASADMIN_CMD="/opt/payara/appserver/glassfish/bin/asadmin --user admin --passwordfile /opt/payara/passwordFile --host localhost --port 4848 --interactive=false"
 POOL_NAME="${JDBC_POOL_NAME:-PayaraPostgresPool}"
-RESOURCE_NAME="${JDBC_RESOURCE_NAME:-jdbc/payaraDS}"
+RESOURCE_NAME="${JDBC_RESOURCE_NAME:-jdbc/SmartData}"
 DB_HOST="${DB_HOST:-postgres}"
 DB_PORT="${DB_PORT:-5432}"
 DB_NAME="${DB_NAME:-payara_db}"
@@ -22,8 +22,8 @@ done
 
 if ! ${ASADMIN_CMD} list-jdbc-connection-pools | grep -Fxq "$POOL_NAME"; then
   ${ASADMIN_CMD} create-jdbc-connection-pool \
-    --datasourceclassname=org.postgresql.ds.PGSimpleDataSource \
-    --restype=javax.sql.DataSource \
+    --datasourceclassname=org.postgresql.ds.PGConnectionPoolDataSource \
+    --restype=javax.sql.ConnectionPoolDataSource \
     --property="user=${DB_USER}:password=${DB_PASSWORD}:databaseName=${DB_NAME}:serverName=${DB_HOST}:portNumber=${DB_PORT}" \
     "$POOL_NAME"
 fi

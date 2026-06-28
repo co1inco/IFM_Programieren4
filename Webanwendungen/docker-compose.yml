@@ -10,9 +10,9 @@ services:
       POSTGRES_PASSWORD: payara_pass
       POSTGRES_DB: payara_db
     volumes:
-      - ./pgdata:/var/lib/postgresql:z
+      - ./pgdata:/var/lib/postgresql:Z
       # - ~/dev/temp/pgdata:/var/lib/postgresql:z # linux system workaround
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro,Z
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -h localhost"]
       interval: 5s
@@ -39,7 +39,7 @@ services:
       DB_USER: payara_user
       DB_PASSWORD: payara_pass
       JDBC_POOL_NAME: PayaraPostgresPool
-      JDBC_RESOURCE_NAME: jdbc/payaraDS
+      JDBC_RESOURCE_NAME: jdbc/SmartData
       JAVA_DEBUGGER_PORT: "9009"
       PAYARA_ARGS: "--debug"
     volumes:
@@ -49,12 +49,15 @@ services:
       - ./SWAC:/opt/payara/appserver/glassfish/domains/domain1/docroot/SWAC:rw,Z
       # autodeploy demo app (myapp)
       - ./demo/target/myapp:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp:rw,Z
+      - ./payara-libs:/opt/payara/appserver/glassfish/domains/domain1/lib/:rw,Z
+      # - ./payara-config:/opt/payara/appserver/glassfish/domains/domain1/config/:rw,Z
       - ./asadmin-scripts:/opt/payara/asadmin-scripts:Z
       - ./demo:/opt/payara/demo
     entrypoint: ["/bin/bash", "-c"]
     command:
       - |
         set -euo pipefail
+        rm -r /opt/payara/appserver/glassfish/domains/domain1/autodeploy/.autodeploystatus || true
         /opt/payara/asadmin-scripts/setup-jdbc.sh
 
 volumes:
