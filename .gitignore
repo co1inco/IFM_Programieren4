@@ -1,1 +1,4 @@
-deployments/
+deployments/*
+deployments/.autodeploystatus/*
+!deployments/SmartData.war
+
