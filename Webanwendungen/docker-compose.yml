@@ -45,6 +45,8 @@ services:
     volumes:
       # Load war files from Payara autodeploy directory
       - ./deployments:/opt/payara/appserver/glassfish/domains/domain1/autodeploy:rw,Z
+      # Serve static files from deployments/SWAC at /SWAC
+      - ./SWAC:/opt/payara/appserver/glassfish/domains/domain1/docroot/SWAC:rw,Z
       # autodeploy demo app (myapp)
       - ./demo/target/myapp:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp:rw,Z
       - ./asadmin-scripts:/opt/payara/asadmin-scripts:Z
