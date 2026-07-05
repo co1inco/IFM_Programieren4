@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS public.project (
-  id int GENERATED ALWAYS AS IDENTITY NOT NULL UNIQUE,
+  id int GENERATED ALWAYS  AS IDENTITY PRIMARY KEY,
   title varchar(255) NOT NULL,
   shortDescription varchar(255) NOT NULL,
   longDescription varchar(1024) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS public.project (
 );
 
 CREATE TABLE IF NOT EXISTS public.task (
-  id int GENERATED ALWAYS AS IDENTITY NOT NULL UNIQUE,
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   shortDescription varchar(255) NOT NULL,
   longDescription varchar(255) NOT NULL,
   projectId INT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS public.task (
 );
 
 CREATE TABLE IF NOT EXISTS public.artifact (
-  id int GENERATED ALWAYS AS IDENTITY NOT NULL UNIQUE,
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title varchar(255) NOT NULL,
   shortDescription varchar(255) NOT NULL,
   longDescription varchar(255) NOT NULL,
