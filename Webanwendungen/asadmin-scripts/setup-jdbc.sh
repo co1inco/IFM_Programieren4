@@ -10,7 +10,12 @@ DB_NAME="${DB_NAME:-payara_db}"
 DB_USER="${DB_USER:-payara_user}"
 DB_PASSWORD="${DB_PASSWORD:-payara_pass}"
 
-/opt/payara/appserver/glassfish/bin/asadmin start-domain --verbose > /tmp/payara-start.log 2>&1 &
+PAYARA_ARGS=${PAYARA_ARGS:-}
+if [[ "${PAYARA_ARGS}" == *"--debug"* || -n "${JAVA_DEBUGGER_PORT:-}" ]]; then
+  /opt/payara/appserver/glassfish/bin/asadmin start-domain --debug --verbose > /tmp/payara-start.log 2>&1 &
+else
+  /opt/payara/appserver/glassfish/bin/asadmin start-domain --verbose > /tmp/payara-start.log 2>&1 &
+fi
 payara_pid=$!
 
 for i in $(seq 1 120); do
