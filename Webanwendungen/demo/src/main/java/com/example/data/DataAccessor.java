@@ -1,6 +1,8 @@
 package com.example.data;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,5 +62,48 @@ public class DataAccessor {
             logger.log(Level.SEVERE, "Could not connected to database", ex);
         }
         return null;
+    }
+
+        /**
+     * Checks if a table exists in the specified schema
+     * @param connection Database connection
+     * @param schema Schema name (e.g., "public")
+     * @param tableName Table name to check
+     * @return true if table exists, false otherwise
+     */
+    public static boolean tableExists(Connection connection, String schema, String tableName) 
+            throws SQLException {
+        DatabaseMetaData metadata = connection.getMetaData();
+        
+        try (ResultSet tables = metadata.getTables(
+                null,                    // catalog (null for current)
+                schema,                  // schema name
+                tableName,               // table name
+                new String[]{"TABLE"}    // table type
+        )) {
+            return tables.next();
+        }
+    }
+    
+    /**
+     * Checks if a column exists in the specified table
+     * @param connection Database connection
+     * @param schema Schema name (e.g., "public")
+     * @param tableName Table name
+     * @param columnName Column name to check
+     * @return true if column exists, false otherwise
+     */
+    public static boolean columnExists(Connection connection, String schema, String tableName, String columnName) 
+            throws SQLException {
+        DatabaseMetaData metadata = connection.getMetaData();
+        
+        try (ResultSet columns = metadata.getColumns(
+                null,        // catalog
+                schema,      // schema name
+                tableName,   // table name
+                columnName   // column name
+        )) {
+            return columns.next();
+        }
     }
 }

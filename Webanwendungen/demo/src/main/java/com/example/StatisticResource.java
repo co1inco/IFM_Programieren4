@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,17 @@ public class StatisticResource {
         
         try {
 
+            if (!DataAccessor.tableExists(conn, "public", table))   {
+                return Response
+                    .status(404, "Table does not exist")
+                    .build();
+            }
+            if (!DataAccessor.columnExists(conn, "public", table, column))   {
+                return Response
+                    .status(404, "Table column does not exist")
+                    .build();
+            }
+
             String percentileSql = "";
             for (int i = 0; i < percentileNumbers.size(); i++) {
                 if (percentileSql.length() != 0) {
@@ -89,15 +101,19 @@ public class StatisticResource {
 
 
             PreparedStatement command = conn.prepareStatement("SELECT " + percentileSql +  " FROM " + "public." + table + " t");
-            
             ResultSet result = command.executeQuery();
-
+            
             List<PercentileData> rows = new ArrayList<>();
             if (!result.next())
                 throw new Exception("No percentile data");
             
             for (int i = 0; i < percentileNumbers.size(); i++) {
-                rows.add(new PercentileData(percentileNumbers.get(i), Float.parseFloat(result.getString(i+1))));
+                int ci = i+1;
+
+                rows.add(new PercentileData(
+                    percentileNumbers.get(i), 
+                    result.getObject(ci)
+                ));
             }
 
             return Response
