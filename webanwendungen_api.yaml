@@ -84,7 +84,7 @@ collection:
         meta:
           id: req_cd7516276d2246b6b0ed71942b77bb3f
           created: 1783285862279
-          modified: 1783334892098
+          modified: 1783337133729
           isPrivate: false
           description: ""
           sortKey: -1783334892039
@@ -169,6 +169,51 @@ collection:
           isPrivate: false
           description: ""
           sortKey: -1783335970246
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: MinMaxSpan
+    meta:
+      id: fld_9cca11bf4b8c44f1998f0b7d93158b3c
+      created: 1783337111299
+      modified: 1783337111299
+      sortKey: -1783337111299
+      description: ""
+    children:
+      - url: "{{host}}/data/statistic/minmaxspan/artifact/realtime"
+        name: get artifacts
+        meta:
+          id: req_d3b9be3ba5514b24908344a1f36b1bc3
+          created: 1783337114700
+          modified: 1783342965351
+          isPrivate: false
+          description: ""
+          sortKey: -1783337114700
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{host}}/data/statistic/minmaxspan/project/id?dateattribute=startdate&sta\
+          rt=2025-01-01T00:00"
+        name: get project (date range)
+        meta:
+          id: req_51d3c0ede81341369011ce1e50ceb2e3
+          created: 1783341407255
+          modified: 1783344927862
+          isPrivate: false
+          description: ""
+          sortKey: -1783336542473
         method: GET
         settings:
           renderRequestBody: true
