@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 import com.example.data.DataAccessor;
+import com.example.data.MinMaxSpanResponseData;
 import com.example.data.PercentileData;
 
 import jakarta.json.*;
@@ -134,11 +135,79 @@ public class StatisticResource {
                 .status(400, ex.getMessage())
                 .build();
         }
-        
-        
-        // return Response
-        //     .ok(String.format("Hello world %s, %s", table, column))
-        //     .build();
     }
 
+
+    @GET
+    @Path("minmaxspan/{table}/{column}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response minmaxspan(
+        @PathParam("table") String table,
+        @PathParam("column") String column,
+        @QueryParam("schema") @DefaultValue("public") String schema,
+        @QueryParam("dateattribute") @DefaultValue("") String dateattribute,
+        @QueryParam("start") @DefaultValue("0001-01-01T00:00") String startDateStr,
+        @QueryParam("end") @DefaultValue("9999-12-31T23:59:59") String endDateStr
+    ) {
+
+        DataAccessor acc = new DataAccessor();
+        Connection conn = acc.getConnection();
+        
+        try {
+
+            if (!DataAccessor.tableExists(conn, "public", table))   {
+                return Response
+                    .status(404, "Table does not exist")
+                    .build();
+            }
+            if (!DataAccessor.columnExists(conn, "public", table, column))   {
+                return Response
+                    .status(404, "Table column does not exist")
+                    .build();
+            }
+            if (dateattribute.length() > 0 && !DataAccessor.columnExists(conn, "public", table, dateattribute))   {
+                return Response
+                    .status(404, "Date column does not exist")
+                    .build();
+            }
+            
+            String sql = "SELECT MIN(v.%2$s), MAX(%2$s), MAX(%2$s) - MIN(%2$s) FROM public.%1$s v";
+            
+            if (dateattribute.length() > 0) {
+                String dateSql = " WHERE v.%1$s >= '%2$s' AND v.%1$s <= '%3$s'";
+                sql += String.format(dateSql, dateattribute, startDateStr, endDateStr);
+            }
+
+            PreparedStatement command = conn.prepareStatement(String.format(sql, table, column));
+
+            ResultSet result = command.executeQuery();
+            
+            if (!result.next())
+                throw new Exception("No percentile data");
+            
+            MinMaxSpanResponseData data = new MinMaxSpanResponseData(
+                result.getObject(1),
+                result.getObject(2),
+                result.getObject(3)
+            );
+            
+            return Response
+                .ok(data)
+                .build();
+
+        } catch (SQLException ex) {
+            logger.warning(ex.getMessage());
+
+            return Response
+                .status(400, ex.getMessage())
+                .build();
+
+        } catch (Exception ex) {
+            logger.warning(ex.getMessage());
+
+            return Response
+                .status(400, ex.getMessage())
+                .build();
+        }
+    }
 }
