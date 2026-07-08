@@ -3,7 +3,8 @@ import { TaskArea } from "../model/taskArea.js";
 import { Artifact } from "../model/artifact.js"
 
 
-const API_URL = "/myapp/api";
+// const API_URL = "/myapp/api";
+const API_URL = "/SmartData/smartdata/records";
 const STATISTIC_URL = "/myapp/data/statistic";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA";
@@ -28,92 +29,60 @@ export function loadArtifactRealtimeStatistics() {
         });
 }
 
-export function loadProjects() {
-    return fetch(API_URL + "/projects.json", get_options)
+function loadData(endpoint, callback) {
+    return fetch(API_URL + endpoint, get_options)
         .then(response => response.json())
         .then(data => {
-            console.log("Loaded projects:", data);
-
-            data.forEach(p => {
-                if (p.id === 2) {
-                    console.log("Projekt 2 Rohdaten:", p);
-                    console.log("Projekt 2 end:", p.end);
-                    console.log("Projekt 2 enddate:", p.enddate);
-                    console.log("Projekt 2 endDate:", p.endDate);
-                }
-            });
-            
-            //console.log("Aufgabe 1:");
-            //console.log("Loaded projects:", data);
-
-            const projects = data.map(p => new Project(
-                p.id,
-                p.name,
-                p.shortdesc,
-                p.longdesc,
-                p.logourl,
-                p.maintainer,
-                p.start,
-                p.end
-            )
-            );
-
-            // console.log("Aufgabe 3:");
-            // console.log("Project objects:", projects);
-            return projects;
+            return callback(data);
         })
         .catch(error => {
-            console.error("Failed to load projects:", error)
+            console.error("Failed to load: ", endpoint, error)
         });
+}
+
+
+export async function loadProjects() {
+    const projects = await loadData(
+        "/project", 
+        data => data.map(p => new Project(
+            p.id,
+            p.name,
+            p.shortdesc,
+            p.longdesc,
+            p.logourl,
+            p.maintainer,
+            p.start,
+            p.end
+        )));
+
+    return projects;
 }
 
 export function loadTaskAreas() {
-    return fetch(API_URL + "/tasks.json", get_options)
-        .then(response => response.json())
-        .then(data => {
-            //console.log("Aufgabe 2: Loaded task areas:", data);
-
-            const tasks = data.map(p => new TaskArea(
-                p.id,
-                p.name,
-                p.shortdesc,
-                p.project
-            ));
-
-            // console.log("Aufgabe 3:");
-            // console.log("Task objects:", tasks)
-            return tasks;
-        })
-        .catch(error => {
-            console.error("Failed to load task areas:", error);
-        });
+    return loadData(
+        "/task", 
+        data => data.map(p => new TaskArea(
+            p.id,
+            p.name,
+            p.shortdesc,
+            p.project
+        )));
 }
 
 export function loadArtifacts() {
-    return fetch(API_URL + "/artefacts.json", get_options)
-        .then(response => response.json())
-        .then(data => {
-            //console.log("Aufgabe 2: Loaded artifacts:", data);
-            
-            const artifacts = data.map(p => new Artifact(
-                p.id,
-                p.name,
-                p.shortdesc,
-                p.longdesc,
-                p.planedtime,
-                p.realtime,
-                p.taskid
-            )
-            );
-
-            // console.log("Aufgabe 3:");
-            // console.log("Artifact object:", artifacts)
-            return artifacts;
-        })
-        .catch(error => {
-            console.error("Failed to load artifacts:", error);
-        });
+    return loadData(
+        "/artifact", 
+        data => data.map(p => new Artifact(
+            p.id,
+            p.name,
+            p.shortdesc,
+            p.longdesc,
+            p.planedtime,
+            p.realtime,
+            p.taskid
+        )));
 }
+
 
 
 function saveDataLocally(data) {
