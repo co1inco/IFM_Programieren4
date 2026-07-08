@@ -24,9 +24,11 @@ const statistics = await loadArtifactRealtimeStatistics();
 console.log("Blatt 9 statistics:", statistics);
 
 projects.forEach(project => {
-    project.min = statistics.min.value;
-    project.max = statistics.max.value;
-    project.span = statistics.Span.value;
+    console.log(project.title, project.startDate, project.endDate);
+
+    project.min = statistics.min;
+    project.max = statistics.max;
+    project.span = statistics.Span;
 
     const durationMs = project.endDate - project.startDate;
     const durationDays = durationMs / (1000 * 60 * 60 * 24);

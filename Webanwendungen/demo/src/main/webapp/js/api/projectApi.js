@@ -32,6 +32,16 @@ export function loadProjects() {
     return fetch(API_URL + "/projects.json", get_options)
         .then(response => response.json())
         .then(data => {
+            console.log("Loaded projects:", data);
+
+            data.forEach(p => {
+                if (p.id === 2) {
+                    console.log("Projekt 2 Rohdaten:", p);
+                    console.log("Projekt 2 end:", p.end);
+                    console.log("Projekt 2 enddate:", p.enddate);
+                    console.log("Projekt 2 endDate:", p.endDate);
+                }
+            });
             
             //console.log("Aufgabe 1:");
             //console.log("Loaded projects:", data);
