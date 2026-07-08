@@ -44,7 +44,7 @@ function loadData(endpoint, callback) {
 export async function loadProjects() {
     const projects = await loadData(
         "/project", 
-        data => data.map(p => new Project(
+        data => data.records.map(p => new Project(
             p.id,
             p.name,
             p.shortdesc,
@@ -61,7 +61,7 @@ export async function loadProjects() {
 export function loadTaskAreas() {
     return loadData(
         "/task", 
-        data => data.map(p => new TaskArea(
+        data => data.records.map(p => new TaskArea(
             p.id,
             p.name,
             p.shortdesc,
@@ -72,7 +72,7 @@ export function loadTaskAreas() {
 export function loadArtifacts() {
     return loadData(
         "/artifact", 
-        data => data.map(p => new Artifact(
+        data => data.records.map(p => new Artifact(
             p.id,
             p.name,
             p.shortdesc,
