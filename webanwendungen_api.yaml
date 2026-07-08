@@ -71,6 +71,24 @@ collection:
         send: true
         store: true
       rebuildPath: true
+  - url: "{{host}}/data/statistic/project/runtime"
+    name: project runtime
+    meta:
+      id: req_f3ac34d66f6e4cb8a0d93b72433c13ab
+      created: 1783540324520
+      modified: 1783540360074
+      isPrivate: false
+      description: ""
+      sortKey: -1783540324520
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
   - name: Percentiles
     meta:
       id: fld_b639b83a11fb456eac007ced47f6d3a4
@@ -169,6 +187,24 @@ collection:
           isPrivate: false
           description: ""
           sortKey: -1783335970246
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{smartData}}/records/project"
+        name: get projects
+        meta:
+          id: req_8207e3e1d292470199bcbd12edc90b88
+          created: 1783527786701
+          modified: 1783527794458
+          isPrivate: false
+          description: ""
+          sortKey: -1783335431142.5
         method: GET
         settings:
           renderRequestBody: true
