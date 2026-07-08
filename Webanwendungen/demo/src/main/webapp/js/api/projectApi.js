@@ -46,7 +46,7 @@ export async function loadProjects() {
         "/project", 
         data => data.records.map(p => new Project(
             p.id,
-            p.name,
+            p.title,
             p.shortdescription,
             p.longdescription,
             p.logo,
