@@ -47,12 +47,12 @@ export async function loadProjects() {
         data => data.records.map(p => new Project(
             p.id,
             p.name,
-            p.shortdesc,
-            p.longdesc,
-            p.logourl,
-            p.maintainer,
-            p.start,
-            p.end
+            p.shortdescription,
+            p.longdescription,
+            p.logo,
+            p.primaryresponsible,
+            p.startdate,
+            p.enddate
         )));
 
     return projects;
@@ -63,9 +63,9 @@ export function loadTaskAreas() {
         "/task", 
         data => data.records.map(p => new TaskArea(
             p.id,
-            p.name,
-            p.shortdesc,
-            p.project
+            p.shortdescription,
+            p.longdescription,
+            p.projectid
         )));
 }
 
@@ -74,10 +74,10 @@ export function loadArtifacts() {
         "/artifact", 
         data => data.records.map(p => new Artifact(
             p.id,
-            p.name,
-            p.shortdesc,
-            p.longdesc,
-            p.planedtime,
+            p.title,
+            p.shortdescription,
+            p.longdescription,
+            p.planedworkingtime,
             p.realtime,
             p.taskid
         )));

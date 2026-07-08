@@ -42,10 +42,10 @@ projects.forEach(project => {
     console.log("Project:", project);
 });
 
-const taskAreas = await loadTaskAreas();
-//console.log("Aufgabe 3: TaskAreas: ", taskAreas);
-const artifacts = await loadArtifacts();
-//console.log("Aufgabe 3: Artifacts", artifacts);
+// const taskAreas = await loadTaskAreas();
+// console.log("Aufgabe 3: TaskAreas: ", taskAreas);
+// const artifacts = await loadArtifacts();
+// console.log("Aufgabe 3: Artifacts", artifacts);
 
 
 //console.log("Project 1 artifacts", projects[0].get_artifacts(taskAreas, artifacts));
@@ -53,39 +53,7 @@ const artifacts = await loadArtifacts();
 //console.log("Project 3 artifacts", projects[2].get_artifacts(taskAreas, artifacts));
 
 
-const testProject = new Project(
-    99,
-    "Testprojekt",
-    "Blabla",
-    "Blablabla",
-    "",
-    "Colin und Jan",
-    "2026-06-24",
-    "2026-7-01"
-);
-
-const testTaskArea = new TaskArea(
-    100,
-    "Testaufgabe",
-    "WBA Aufgabe",
-    "Javascript",
-    "2:00",
-    null,
-    100
-);
-
-const testArtifact = new Artifact(
-    101,
-    "testartefakt",
-    "Kurz",
-    "Lang",
-    "1:00",
-    null,
-    101
-);
 
 
-await resendStoredData();
-
-
-await sendProjectData(testProject, testTaskArea, testArtifact);
+// await resendStoredData();
+// await sendProjectData(testProject, testTaskArea, testArtifact);
