@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import com.example.data.DataAccessor;
 import com.example.data.MinMaxSpanResponseData;
 import com.example.data.PercentileData;
+import com.example.data.ProjectRuntimeData;
 
 import jakarta.json.*;
 import jakarta.ws.rs.Consumes;
@@ -199,6 +200,75 @@ public class StatisticResource {
                     result.getObject(3)
                 );
             
+            return Response
+                .ok(data)
+                .build();
+
+        } catch (SQLException ex) {
+            logger.warning(ex.getMessage());
+
+            return Response
+                .status(400, ex.getMessage())
+                .build();
+
+        } catch (Exception ex) {
+            logger.warning(ex.getMessage());
+
+            return Response
+                .status(400, ex.getMessage())
+                .build();
+        }
+    }
+
+
+    @GET
+    @Path("project/runtime/") // I prefer this. they are required, it makes sense and it mirrors the smart data interface
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response projectRuntime(
+        @QueryParam("id") @DefaultValue("-1") String id
+    ) {
+        
+        int idNumber = -1;
+        try {
+            idNumber = Integer.parseInt(id);
+        } catch (Exception ex) {
+            return Response
+                .status(404, "Invalid id")
+                .build();    
+        }
+
+        DataAccessor acc = new DataAccessor();
+        Connection conn = acc.getConnection();
+                
+        String sql = """
+                select 
+                    p.id,
+                    SUM(coalesce(a.planedworkingtime, '00:00:00')) as planedworkingtime,
+                    SUM(coalesce(a.realtime, '00:00:00')) as realtime
+                from public.project p 
+                left join public.task t on t.projectid  = p.id
+                left join public.artifact a on a.taskid = t.id
+                %1$s
+                group by p.id;
+                """;
+
+        sql = String.format(sql, idNumber >= 0 ? "where p.id = " + Integer.toString(idNumber) : "");
+
+        try {
+
+            PreparedStatement command = conn.prepareStatement(String.format(sql));
+
+            ResultSet result = command.executeQuery();
+
+            List<ProjectRuntimeData> data = new ArrayList<>();
+            while (result.next()) {
+                data.add(new ProjectRuntimeData(
+                    result.getInt(1),
+                    result.getMetaData().getColumnType(2) == 1111 ? result.getString(2) : result.getObject(2), 
+                    result.getMetaData().getColumnType(3) == 1111 ? result.getString(3) : result.getObject(3)
+                ));
+            }
+
             return Response
                 .ok(data)
                 .build();
