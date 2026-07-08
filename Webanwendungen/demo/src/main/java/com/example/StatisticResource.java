@@ -141,7 +141,7 @@ public class StatisticResource {
 
 
     @GET
-    @Path("minmaxspan/{table}/{column}")
+    @Path("minmaxspan/{table}/{column}") // I prefer this. they are required, it makes sense and it mirrors the smart data interface
     @Produces(MediaType.APPLICATION_JSON)
     public Response minmaxspan(
         @PathParam("table") String table,
@@ -157,30 +157,30 @@ public class StatisticResource {
         
         try {
 
-            if (!DataAccessor.tableExists(conn, "public", table))   {
+            // if (!DataAccessor.tableExists(conn, schema, table))   {
+            //     return Response
+            //         .status(404, "Table does not exist")
+            //         .build();
+            // }
+            if (!DataAccessor.columnExists(conn, schema, table, column)) { // will check schema and table as well
                 return Response
-                    .status(404, "Table does not exist")
+                    .status(404, "Resource does not exist")
                     .build();
             }
-            if (!DataAccessor.columnExists(conn, "public", table, column))   {
-                return Response
-                    .status(404, "Table column does not exist")
-                    .build();
-            }
-            if (dateattribute.length() > 0 && !DataAccessor.columnExists(conn, "public", table, dateattribute))   {
+            if (dateattribute.length() > 0 && !DataAccessor.columnExists(conn, schema, table, dateattribute))   {
                 return Response
                     .status(404, "Date column does not exist")
                     .build();
             }
             
-            String sql = "SELECT MIN(v.%2$s), MAX(%2$s), MAX(%2$s) - MIN(%2$s) FROM public.%1$s v";
+            String sql = "SELECT MIN(v.%3$s), MAX(%3$s), MAX(%3$s) - MIN(%3$s) FROM %1$s.%2$s v";
             
             if (dateattribute.length() > 0) {
                 String dateSql = " WHERE v.%1$s >= '%2$s' AND v.%1$s <= '%3$s'";
                 sql += String.format(dateSql, dateattribute, startDateStr, endDateStr);
             }
 
-            PreparedStatement command = conn.prepareStatement(String.format(sql, table, column));
+            PreparedStatement command = conn.prepareStatement(String.format(sql, schema, table, column));
 
             ResultSet result = command.executeQuery();
             

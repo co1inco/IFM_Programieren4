@@ -64,7 +64,20 @@ public class DataAccessor {
         return null;
     }
 
-        /**
+
+    public static boolean schemaExists(Connection connection, String schema) throws SQLException {
+        DatabaseMetaData metadata = connection.getMetaData();
+
+        try (ResultSet tables = metadata.getSchemas(
+                null,           // catalog (null for current)
+                schema                  // schema name
+        )) {
+            return tables.next();
+        }
+    }
+
+
+    /**
      * Checks if a table exists in the specified schema
      * @param connection Database connection
      * @param schema Schema name (e.g., "public")
