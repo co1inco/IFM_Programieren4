@@ -3,7 +3,8 @@
 import { ProjectService } from "./service/ProjectService.js";
 import { ProjectSorter } from "./service/ProjectSorter.js";
 import { translate, setLanguage } from "./languages/translations.js";
-import { loadProjects, loadTaskAreas, loadArtifacts } from "./api/projectApi.js"
+
+import { loadProjects, loadTaskAreas, loadArtifacts, loadArtifactRealtimeStatistics } from "./api/projectApi.js"
 
 import { sendProjectData } from "./api/projectApi.js";
 import { Project } from "./model/Project.js";
@@ -17,15 +18,37 @@ import { resendStoredData } from "./api/projectApi.js";
 
 
 const projects = await loadProjects();
-console.log("Aufgabe 3: Projects: ", projects);
-const taskAreas = await loadTaskAreas();
-console.log("Aufgabe 3: TaskAreas: ", taskAreas);
-const artifacts = await loadArtifacts();
-console.log("Aufgabe 3: Artifacts", artifacts);
+//console.log("Aufgabe 3: Projects: ", projects);
 
-console.log("Project 1 artifacts", projects[0].get_artifacts(taskAreas, artifacts));
-console.log("Project 2 artifacts", projects[1].get_artifacts(taskAreas, artifacts));
-console.log("Project 3 artifacts", projects[2].get_artifacts(taskAreas, artifacts));
+const statistics = await loadArtifactRealtimeStatistics();
+console.log("Blatt 9 statistics:", statistics);
+
+projects.forEach(project => {
+    project.min = statistics.min.value;
+    project.max = statistics.max.value;
+    project.span = statistics.Span.value;
+
+    const durationMs = project.endDate - project.startDate;
+    const durationDays = durationMs / (1000 * 60 * 60 * 24);
+
+    project.projectDuration = durationDays;
+});
+
+console.log("Projects with statistics:", projects)
+
+projects.forEach(project => {
+    console.log("Project:", project);
+});
+
+const taskAreas = await loadTaskAreas();
+//console.log("Aufgabe 3: TaskAreas: ", taskAreas);
+const artifacts = await loadArtifacts();
+//console.log("Aufgabe 3: Artifacts", artifacts);
+
+
+//console.log("Project 1 artifacts", projects[0].get_artifacts(taskAreas, artifacts));
+//console.log("Project 2 artifacts", projects[1].get_artifacts(taskAreas, artifacts));
+//console.log("Project 3 artifacts", projects[2].get_artifacts(taskAreas, artifacts));
 
 
 const testProject = new Project(

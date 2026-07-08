@@ -12,7 +12,7 @@ export class Project {
      * @param {Date} startdatum
      * @param {Date} enddatum
      */
-    constructor(id, title, shortDescription, longDescription, logoPath, maintainer, startDate, endDate) {
+    constructor(id, title, shortDescription, longDescription, logoPath, maintainer, startDate, endDate, min = null, max = null, span = null, projectDuration= null) {
         this._id = id;
         this._title = title;
         this._shortDescription = shortDescription;
@@ -21,6 +21,10 @@ export class Project {
         this._maintainer = maintainer;
         this._startDate = new Date(startDate);
         this._endDate = new Date(endDate);
+        this._min = min;
+        this._max = max;
+        this._span = span;
+        this._projectDuration = projectDuration;
     }
 
     get id() { return this._id; }
@@ -30,7 +34,7 @@ export class Project {
 
     get logoPath() { return this._logoPath; }
     set logoPath(value) { this._logoPath = value; }
-    
+
     get startDate() { return this._startDate; }
     set startDate(value) { this._startDate = value; }
 
@@ -61,4 +65,18 @@ export class Project {
             .filter((v,i,a)=>a.indexOf(v)==i); // distinct
     }
 
+    get endDate() { return this._endDate; }
+    set endDate(value) { this._endDate = value; }
+
+    get min() { return this._min; }
+    set min(value) { this._min = value; }
+
+    get max() { return this._max; }
+    set max(value) { this._max = value; }
+
+    get span() { return this._span; }
+    set span(value) { this._span = value; }
+
+    get projectDuration() { return this._projectDuration; }
+    set projectDuration(value) { this._projectDuration = value; }
 }

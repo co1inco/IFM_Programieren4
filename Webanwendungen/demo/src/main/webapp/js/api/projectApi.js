@@ -4,6 +4,7 @@ import { Artifact } from "../model/artifact.js"
 
 
 const API_URL = "/myapp/api";
+const STATISTIC_URL = "/myapp/data/statistic";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA";
 const STORAGE_KEY = "pendingData";
@@ -15,14 +16,25 @@ const get_options = {
     cache: "no-store"
 }
 
+export function loadArtifactRealtimeStatistics() {
+    return fetch(STATISTIC_URL + "/minmaxspan/artifact/realtime", get_options)
+        .then(response => response.json())
+        .then(data => {
+            //console.log("Artifact realtime statistics:", data);
+            return data;
+        })
+        .catch(error => {
+            console.error("Failed to load artifact statistics:", error);
+        });
+}
 
 export function loadProjects() {
     return fetch(API_URL + "/projects.json", get_options)
         .then(response => response.json())
         .then(data => {
             
-            console.log("Aufgabe 1:");
-            console.log("Loaded projects:", data);
+            //console.log("Aufgabe 1:");
+            //console.log("Loaded projects:", data);
 
             const projects = data.map(p => new Project(
                 p.id,
@@ -49,7 +61,7 @@ export function loadTaskAreas() {
     return fetch(API_URL + "/tasks.json", get_options)
         .then(response => response.json())
         .then(data => {
-            console.log("Aufgabe 2: Loaded task areas:", data);
+            //console.log("Aufgabe 2: Loaded task areas:", data);
 
             const tasks = data.map(p => new TaskArea(
                 p.id,
@@ -71,7 +83,7 @@ export function loadArtifacts() {
     return fetch(API_URL + "/artefacts.json", get_options)
         .then(response => response.json())
         .then(data => {
-            console.log("Aufgabe 2: Loaded artifacts:", data);
+            //console.log("Aufgabe 2: Loaded artifacts:", data);
             
             const artifacts = data.map(p => new Artifact(
                 p.id,
@@ -100,8 +112,8 @@ function saveDataLocally(data) {
         JSON.stringify(data)
     );
 
-    console.log("Data stored in LocalStorage.");
-    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+    //console.log("Data stored in LocalStorage.");
+    //console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
 }
 
 function loadDataLocally() {
@@ -127,7 +139,7 @@ export function sendProjectData(projects, taskArea, artifact) {
         artifacts: [...local_data?.artifacts ?? [], ...artifact]
     }
 
-    console.log("Sending data to API....", data);
+    //console.log("Sending data to API....", data);
 
     return fetch(API_URL + "/projectsAPI", {
         method: "POST",
@@ -139,23 +151,23 @@ export function sendProjectData(projects, taskArea, artifact) {
         credentials: 'same-origin'
     })
         .then(response => {
-            console.log("API status:", response.status);
+            //console.log("API status:", response.status);
 
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
 
-            console.log("Data successfully sent.");
+            //console.log("Data successfully sent.");
 
             localStorage.removeItem(STORAGE_KEY);
             // console.log("Removed?: ", JSON.parse(localStorage.getItem(STORAGE_KEY)));
-            console.log("Stored data removed from LocalStorage.");
+            //console.log("Stored data removed from LocalStorage.");
 
             return true;
         })
         .catch(error => {
-            console.warn("API unavailable. Saving data locally.");
-            console.error(error);
+            //console.warn("API unavailable. Saving data locally.");
+            //console.error(error);
 
             saveDataLocally(data);
 
