@@ -113,7 +113,9 @@ public class StatisticResource {
 
                 rows.add(new PercentileData(
                     percentileNumbers.get(i), 
-                    result.getObject(ci)
+                    result.getMetaData().getColumnType(ci) == 1111
+                        ? result.getString(ci)
+                        : result.getObject(ci)
                 ));
             }
 
@@ -185,11 +187,17 @@ public class StatisticResource {
             if (!result.next())
                 throw new Exception("No percentile data");
             
-            MinMaxSpanResponseData data = new MinMaxSpanResponseData(
-                result.getObject(1),
-                result.getObject(2),
-                result.getObject(3)
-            );
+            MinMaxSpanResponseData data = result.getMetaData().getColumnType(1) == 1111 
+                ? new MinMaxSpanResponseData(
+                    result.getString(1),
+                    result.getString(2),
+                    result.getString(3)
+                )
+                : new MinMaxSpanResponseData(
+                    result.getObject(1),
+                    result.getObject(2),
+                    result.getObject(3)
+                );
             
             return Response
                 .ok(data)
