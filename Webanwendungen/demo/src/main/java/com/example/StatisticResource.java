@@ -242,9 +242,13 @@ public class StatisticResource {
                 
         String sql = """
                 select 
-                    p.id,
-                    SUM(coalesce(a.planedworkingtime, '00:00:00')) as planedworkingtime,
-                    SUM(coalesce(a.realtime, '00:00:00')) as realtime
+                    p.id as projectId,
+                    SUM(coalesce(a.planedworkingtime, '00:00:00')) as planedTime,
+                    MIN(a.planedworkingtime) as planedTimeMin,
+                    MAX(a.planedworkingtime) as planedTimeMax,
+                    SUM(coalesce(a.realtime, '00:00:00')) as realtime,
+                    MIN(a.realtime) as realtimeMin,
+                    MAX(a.realtime) as realtimeMax
                 from public.project p 
                 left join public.task t on t.projectid  = p.id
                 left join public.artifact a on a.taskid = t.id
@@ -264,8 +268,12 @@ public class StatisticResource {
             while (result.next()) {
                 data.add(new ProjectRuntimeData(
                     result.getInt(1),
-                    result.getMetaData().getColumnType(2) == 1111 ? result.getString(2) : result.getObject(2), 
-                    result.getMetaData().getColumnType(3) == 1111 ? result.getString(3) : result.getObject(3)
+                    extractValue(result, 2), 
+                    extractValue(result, 3), 
+                    extractValue(result, 4), 
+                    extractValue(result, 5), 
+                    extractValue(result, 6), 
+                    extractValue(result, 7)
                 ));
             }
 
@@ -287,5 +295,11 @@ public class StatisticResource {
                 .status(400, ex.getMessage())
                 .build();
         }
+    }
+
+    private static Object extractValue(ResultSet result, int index) throws SQLException {
+        return result.getMetaData().getColumnType(index) == 1111 
+            ? result.getString(index) 
+            : result.getObject(index);
     }
 }

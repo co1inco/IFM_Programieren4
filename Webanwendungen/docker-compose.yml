@@ -54,6 +54,7 @@ services:
       - ./asadmin-scripts:/opt/payara/asadmin-scripts:ro
       - ./demo:/opt/payara/demo
     entrypoint: ["/bin/bash"]
+    # make sure the script uses linux line endings
     command: ["/opt/payara/asadmin-scripts/setup-jdbc.sh"]
 
 volumes:
