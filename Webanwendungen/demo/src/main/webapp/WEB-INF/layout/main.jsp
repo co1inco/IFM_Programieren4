@@ -27,17 +27,20 @@
             <form action="/myapp/submit" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
-                    <label for="name">Username</label>
+                    <label for="name" data-i18n="username">Username</label>
                     <input id="name" name="name" type="text"/> <br/>
 
-                    <label for="password">Password</label>
+                    <label for="password" data-i18n="password">Password</label>
                     <input id="password" name="password" type="password"/> <br/>
 
-                    <input type="submit" value="Login"/> 
+                    <input type="submit" value="Login" data-i18n="login"/> 
                 </fieldset>
             </form>
             
-            <span>Neu hier? <a href="register">Registrieren</a></span>
+            <span>
+                <span data-i18n="newHere">Neu hier</span> <a href="register" data-i18n="register">Registrieren</a>
+            </span>
+            
         </div>
 
     </header>
@@ -45,8 +48,13 @@
     <nav class="main-nav hover-link">
         <ul>
             <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
-            <li><a href="${pageContext.request.contextPath}/projects">Projekte</a></li>
-            <li><a href="${pageContext.request.contextPath}/newproject">Neues Projekt</a></li>
+            <li><a href="${pageContext.request.contextPath}/projects" data-i18n="projects">Projekte</a></li>
+            <li><a href="${pageContext.request.contextPath}/newproject" data-i18n="newProject">Neues Projekt</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="#" onclick="setLanguage('de')">DE</a></li>
+            <li><a href="#" onclick="setLanguage('en')">EN</a></li>
         </ul>
     </nav>
     
@@ -65,17 +73,21 @@
     <footer>
         <nav>
             <ul>
-                <li><a href="impresum">Impressum</a></li>
-                <li><a href="dsgvo">Datenschutzerklärung</a></li>
-                <li><a href="haftung">Haftungsausschluss</a></li>
+                <li><a href="impresum" data-i18n="imprint">Impressum</a></li>
+                <li><a href="dsgvo" data-i18n="privacyPolicy">Datenschutzerklärung</a></li>
+                <li><a href="haftung" data-i18n="disclaimer">Haftungsausschluss</a></li>
             </ul>
 
             <div class="back-to-top">
-                <a href="#header">Zurück zum Anfang</a> 
+                <a href="#header" data-i18n="backToTop">Zurück zum Anfang</a> 
             </div>
         </nav>
-        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>    
+        <p>
+            <span>&copy; 2026 StudBoard. All rights reserved.</span> 
+            <Span data-i18n="contact">Kontakt</Span>: <a href="mailto:studboard@hsbi.de">hier</a></p>    
         <br/>    
     </footer>
+
+    <script type="module" src="${pageContext.request.contextPath}/js/localization.js"></script>
 </body>
 </html>

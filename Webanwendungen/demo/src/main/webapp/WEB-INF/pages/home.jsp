@@ -16,11 +16,11 @@
             Besucher erhalten einen Überblick über aktuelle Projektideen, Ziele und beteiligte Personen.
         </p>
 
-        <iframe width="560" height="315"
+        <!-- <iframe width="560" height="315"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=MmuiEnR6hAucS2jz"
                 title="YouTube video player"
                 allowfullscreen>
-        </iframe>
+        </iframe> -->
     </article>
 
     <article class="home-projects">
