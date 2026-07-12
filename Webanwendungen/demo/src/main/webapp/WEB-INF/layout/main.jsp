@@ -53,8 +53,8 @@
         </ul>
 
         <ul>
-            <li><a href="#" onclick="setLanguage('de')">DE</a></li>
-            <li><a href="#" onclick="setLanguage('en')">EN</a></li>
+            <li><a href="#" onclick="setLanguage('de-DE')">DE</a></li>
+            <li><a href="#" onclick="setLanguage('en-US')">EN</a></li>
         </ul>
     </nav>
     

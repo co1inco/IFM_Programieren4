@@ -10,7 +10,13 @@ function loadTranslation(lang_id) {
         .then(translation => {
             current_translations = new Map(Object.entries(translation));
         })
-        .catch(ex => console.error("Failed to load translation: ", ex));
+        .catch(ex => {
+            console.error("Failed to load translation: ", ex);
+
+            if (lang_id !== 'en-US') {
+                loadTranslation('en-US');
+            }
+        });
 }
 
 function initializeTranslations() {
