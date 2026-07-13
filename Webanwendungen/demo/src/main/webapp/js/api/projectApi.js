@@ -4,7 +4,8 @@ import { Artifact } from "../model/artifact.js"
 
 
 // const API_URL = "/myapp/api";
-const API_URL = "/SmartData/smartdata/records";
+const API_URL = "http://localhost:8080/SmartData/smartdata/records";
+// const API_URL = "/SmartData/smartdata/records";
 const STATISTIC_URL = "/myapp/data/statistic";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA/projectsAPI";
 // const API_URL = "https://scl.fh-bielefeld.de/WBA";
@@ -56,6 +57,21 @@ export async function loadProjects() {
         )));
 
     return projects;
+}
+
+export async function loadHomeProjects() {
+    return await loadData(
+        "/project?order=startdate,DESC&size=3", 
+        data => data.records.map(p => new Project(
+            p.id,
+            p.title,
+            p.shortdescription,
+            p.longdescription,
+            p.logo,
+            p.primaryresponsible,
+            p.startdate,
+            p.enddate
+        )));
 }
 
 export function loadTaskAreas() {

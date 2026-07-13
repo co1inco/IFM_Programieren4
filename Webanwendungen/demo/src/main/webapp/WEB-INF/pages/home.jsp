@@ -25,12 +25,13 @@
 
     <article class="home-projects">
         <h2>Neue Projekte</h2>
-        <ul>
-            <li>Smart Campus Navigator <a href="project/1">hier</a></li>
+        <ul id="project-list">
+            <!-- <li>Smart Campus Navigator <a href="project/1">hier</a></li>
             <li>Parkplatz Survival <a href="project/2">hier</a></li>
             <li>Campus Flohmarkt <a href="project/3">hier</a></li>
-            <li>Coffee Emergency System <a href="project/4">hier</a></li>
+            <li>Coffee Emergency System <a href="project/4">hier</a></li> -->
         </ul>
     </article>
 
+    <script type="module" src="${pageContext.request.contextPath}/js/home.js"></script>
 </section>
