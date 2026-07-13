@@ -27,9 +27,15 @@ public class UserResource {
         String redirectUrl = referer != null ? referer : "/";
         return Response
             .status(Response.Status.FOUND)
-            .location(URI.create(redirectUrl))
+            .location(URI.create(redirectUrl + "/test"))
             .build();
     }
 
+    @GET 
+    @Path("login_test")
+    public Response get_login() {
 
+
+        return Response.ok("hello world").build();
+    }
 }

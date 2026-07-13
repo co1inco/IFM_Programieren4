@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 ASADMIN_CMD="/opt/payara/appserver/glassfish/bin/asadmin --user admin --passwordfile /opt/payara/passwordFile --host localhost --port 4848 --interactive=false"
@@ -9,6 +9,8 @@ DB_PORT="${DB_PORT:-5432}"
 DB_NAME="${DB_NAME:-payara_db}"
 DB_USER="${DB_USER:-payara_user}"
 DB_PASSWORD="${DB_PASSWORD:-payara_pass}"
+# APP_NAME="${APP_NAME:-myapp}"
+# APP_WAR="/opt/payara/demo/target/myapp.war"
 
 PAYARA_ARGS=${PAYARA_ARGS:-}
 if [[ "${PAYARA_ARGS}" == *"--debug"* || -n "${JAVA_DEBUGGER_PORT:-}" ]]; then
@@ -36,5 +38,19 @@ fi
 if ! ${ASADMIN_CMD} list-jdbc-resources | grep -Fxq "$RESOURCE_NAME"; then
   ${ASADMIN_CMD} create-jdbc-resource --connectionpoolid="$POOL_NAME" "$RESOURCE_NAME"
 fi
+
+# for i in $(seq 1 60); do
+#   if [[ -f "$APP_WAR" ]]; then
+#     break
+#   fi
+#   sleep 2
+# done
+
+# if [[ -f "$APP_WAR" ]]; then
+#   ${ASADMIN_CMD} undeploy "$APP_NAME" >/dev/null 2>&1 || true
+#   ${ASADMIN_CMD} deploy --force --name "$APP_NAME" "$APP_WAR"
+# else
+#   echo "WAR artifact not found at $APP_WAR; skipping deployment" >&2
+# fi
 
 wait "$payara_pid"
