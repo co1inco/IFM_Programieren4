@@ -89,6 +89,56 @@ collection:
         send: true
         store: true
       rebuildPath: true
+  - url: "{{host}}/data/user/login"
+    name: Login
+    meta:
+      id: req_f7828812766649c8a8c261327f1c3259
+      created: 1783865620417
+      modified: 1783964848334
+      isPrivate: false
+      description: ""
+      sortKey: -1783865620417
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - name: username
+          value: abc
+          description: ""
+          disabled: false
+        - name: password
+          value: xyz
+          description: ""
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{smartData}}/records/project?order=startdate,DESC&size=3"
+    name: get newest projects
+    meta:
+      id: req_f57e1a4dcf784e7ebf3681c713bb48b9
+      created: 1783969026035
+      modified: 1783969605334
+      isPrivate: false
+      description: ""
+      sortKey: -1783969026035
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
   - name: Percentiles
     meta:
       id: fld_b639b83a11fb456eac007ced47f6d3a4
@@ -264,15 +314,17 @@ cookieJar:
   meta:
     id: jar_492b52167f629ff3e4954a312ad383893434bca7
     created: 1777195460568
-    modified: 1777324989290
+    modified: 1783965571897
   cookies:
-    - id: 9e906a76-2fbf-457f-afd9-050dd68a3186
-      key: JSESSIONID
-      value: 0d31b64c0d3ae4f95d02d87de3a7
+    - id: 872e9423-e50e-4b4d-8fc8-024aacdb2895
+      key: loggedIn
+      value: "true"
       domain: localhost
-      path: /myapp
+      path: /
       secure: false
       httpOnly: true
+      extensions:
+        - Version=1
       hostOnly: true
 environments:
   name: Base Environment
