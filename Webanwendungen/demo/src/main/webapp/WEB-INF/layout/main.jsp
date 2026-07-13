@@ -22,9 +22,9 @@
             <img src="/myapp/res/header320x34.png">
         </picture>
 
-        <div class="login-area">
+        <div class="login-area" id="login-area">
             <b>Login</b>
-            <form action="http://localhost:8080/myapp/api/user/login" method="post">
+            <form action="#" method="post" id="loginForm">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
                     <label for="name" data-i18n="username">Username</label>
@@ -41,6 +41,10 @@
                 <span data-i18n="newHere">Neu hier</span> <a href="register" data-i18n="register">Registrieren</a>
             </span>
             
+        </div>
+
+        <div class="login-area" id="logout-area" style="visibility: collapse; margin: 50px">
+            <button id="logoutButton"><b>Logout</b></button>
         </div>
 
     </header>
@@ -88,6 +92,6 @@
         <br/>    
     </footer>
 
-    <script type="module" src="${pageContext.request.contextPath}/js/localization.js"></script>
+    <script type="module" src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>

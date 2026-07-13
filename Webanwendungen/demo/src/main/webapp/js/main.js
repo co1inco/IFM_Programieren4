@@ -1,59 +1,48 @@
+import { setLanguage as applyLanguage } from "./languages/translations.js";
 
-// import { projects, artifacts, projectArtifacts } from "./testdata.js";
-import { ProjectService } from "./service/ProjectService.js";
-import { ProjectSorter } from "./service/ProjectSorter.js";
-import { translate, setLanguage } from "./languages/translations.js";
+window.setLanguage = applyLanguage;
 
-import { loadProjects, loadTaskAreas, loadArtifacts, loadArtifactRealtimeStatistics } from "./api/projectApi.js"
-
-import { sendProjectData } from "./api/projectApi.js";
-import { Project } from "./model/Project.js";
-import { TaskArea } from "./model/taskArea.js";
-import { Artifact } from "./model/artifact.js";
-
-import { resendStoredData } from "./api/projectApi.js";
+const browser_lang = navigator.language;
+console.log("Detected language:", browser_lang);
+window.setLanguage(browser_lang);
 
 
-// resendStoredData();
-
-
-const projects = await loadProjects();
-//console.log("Aufgabe 3: Projects: ", projects);
-
-const statistics = await loadArtifactRealtimeStatistics();
-console.log("Blatt 9 statistics:", statistics);
-
-projects.forEach(project => {
-    console.log(project.title, project.startDate, project.endDate);
-
-    project.min = statistics.min;
-    project.max = statistics.max;
-    project.span = statistics.Span;
-
-    const durationMs = project.endDate - project.startDate;
-    const durationDays = durationMs / (1000 * 60 * 60 * 24);
-
-    project.projectDuration = durationDays;
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(e.target);
+  const response = await fetch('/login', {
+    method: 'POST',
+    body: formData,
+    credentials: 'include' // Sends/receives cookies
+  });
+  
+  if (response.ok) {
+    // Update UI to show logged-in state
+    localStorage.setItem("isLoggedIn", true);
+    updateUserLoggedIn();
+  } else {
+    // Show error message
+    alert('Login failed');
+  }
 });
 
-console.log("Projects with statistics:", projects)
-
-projects.forEach(project => {
-    console.log("Project:", project);
+document.getElementById("logoutButton").addEventListener('click', async (e) => {
+    localStorage.setItem("isLoggedIn", false);
+    updateUserLoggedOut();
 });
 
-// const taskAreas = await loadTaskAreas();
-// console.log("Aufgabe 3: TaskAreas: ", taskAreas);
-// const artifacts = await loadArtifacts();
-// console.log("Aufgabe 3: Artifacts", artifacts);
 
+function updateUserLoggedIn() {
+    document.getElementById("login-area").style.visibility = "collapse";
+    document.getElementById("logout-area").style.visibility = "visible";
+}
 
-//console.log("Project 1 artifacts", projects[0].get_artifacts(taskAreas, artifacts));
-//console.log("Project 2 artifacts", projects[1].get_artifacts(taskAreas, artifacts));
-//console.log("Project 3 artifacts", projects[2].get_artifacts(taskAreas, artifacts));
+function updateUserLoggedOut() {
+    document.getElementById("login-area").style.visibility = "visible";
+    document.getElementById("logout-area").style.visibility = "collapse";
+}
 
-
-
-
-// await resendStoredData();
-// await sendProjectData(testProject, testTaskArea, testArtifact);
+if (localStorage.getItem("isLoggedIn")) {
+    updateUserLoggedIn();
+}
