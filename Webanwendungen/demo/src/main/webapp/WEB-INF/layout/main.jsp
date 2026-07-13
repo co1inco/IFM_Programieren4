@@ -24,7 +24,7 @@
 
         <div class="login-area">
             <b>Login</b>
-            <form action="/myapp/submit" method="post">
+            <form action="http://localhost:8080/myapp/api/user/login" method="post">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
                     <label for="name" data-i18n="username">Username</label>

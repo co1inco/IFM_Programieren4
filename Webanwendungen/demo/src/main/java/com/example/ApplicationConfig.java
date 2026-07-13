@@ -16,6 +16,7 @@ public class ApplicationConfig extends Application {
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(StatisticResource.class);
+        resources.add(UserResource.class);
         resources.add(CorsFilter.class);
     }
 
