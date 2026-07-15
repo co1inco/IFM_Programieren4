@@ -505,3 +505,7 @@ footer a,
 .sidenav {
     position: sticky;
 }
+
+#descriptionIndex, #descriptionIndex ul {
+    margin-left: 10px;
+}

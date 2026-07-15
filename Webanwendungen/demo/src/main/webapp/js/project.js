@@ -25,7 +25,10 @@ loadProject(projectId)
         document.getElementById("projectDescriptionShort").innerText = p.shortDescription;
 
         const description = parser.parseFromString(p.longDescription, "text/html");
-        document.getElementById("projectDescriptionLong").appendChild(description.body);
+        const body = description.body;
+        loadHeaders(body);
+        document.getElementById("projectDescriptionLong").appendChild(body);
+
         
     })
     .catch(ex => {
@@ -46,4 +49,56 @@ loadProjectTasks(projectId)
     })
     .catch(ex => {
         console.error("Failed to load tasks: ", ex);
-    })
+    });
+
+
+function loadHeaders(body) {
+    
+    const headers = Array.from(body.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+        .map(h => ({
+            level: parseInt(h.tagName[1]),
+            element: h
+        }));
+
+    if (headers.length === 0) {
+        // console.log("No headers :(");
+        return;
+    }
+
+    const headerStack = [];
+    headerStack.push({
+        level: 0,
+        indexListElement: document.getElementById("descriptionIndex")
+    });
+
+    let headerID = 1;
+
+    for (const h of headers) {
+
+        // reduce the stack to the parent header (level lower than own)
+        while (h.level <= headerStack[headerStack.length-1].level) {
+            headerStack.pop();
+        }
+
+        // create new index element, add id to header, push to stack
+        const link = document.createElement('a');
+        link.href = `#desc_${headerID}`;
+        link.textContent = h.element.textContent;
+
+        const list = document.createElement('ul');
+
+        const listElement = document.createElement("li");
+        listElement.appendChild(link);
+        listElement.appendChild(list);
+        headerStack[headerStack.length-1].indexListElement.appendChild(listElement);
+
+        h.element.id = `desc_${headerID}`;
+        headerID++;
+        
+        headerStack.push({
+            level: h.level,
+            indexListElement: list
+        });
+    }
+
+}
