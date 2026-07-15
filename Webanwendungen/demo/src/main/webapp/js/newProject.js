@@ -24,7 +24,7 @@ form.addEventListener("submit", async (event) => {
 
         console.log("Gespeichertes Projekt:", createdProject);
 
-        window.location.href = `/myapp/project/${createdProject}`;
+        window.location.href = `/myapp/project?id=${createdProject}`;
         
     } catch (error) {
         console.error("Fehler beim Speichern:", error);

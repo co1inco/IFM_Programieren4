@@ -29,7 +29,7 @@ function renderProjects(projectsToRender) {
             </div>
 
             <div class="project-footer">
-                <a href="project/${project.id}">Zum Projekt</a>
+                <a href="project?id=${project.id}">Zum Projekt</a>
             </div>
         `;
 
