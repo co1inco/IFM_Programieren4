@@ -1,5 +1,5 @@
 
-import { loadProject } from './api/projectApi.js'
+import { loadProject, loadProjectTasks } from './api/projectApi.js'
 
 const currentUrl = new URL(window.location.href);
 const projectId = Number(currentUrl.searchParams.get("id"));
@@ -26,16 +26,24 @@ loadProject(projectId)
 
         const description = parser.parseFromString(p.longDescription, "text/html");
         document.getElementById("projectDescriptionLong").appendChild(description.body);
-
-        const goalsList = document.getElementById("projectGoals");
-        
-        
-        //TODO
         
     })
     .catch(ex => {
         document.getElementById("projectTitle").innerText = "Error: failed to load";
         console.error(ex);
-    })
+    });
 
-console.log("project id", projectId);
+loadProjectTasks(projectId)
+    .then(tasks => {
+        const goalsList = document.getElementById("projectGoals");
+
+        tasks.forEach(t => {
+            const element = document.createElement("li");
+            element.innerText = t.title;
+            goalsList.appendChild(element);
+        });
+
+    })
+    .catch(ex => {
+        console.error("Failed to load tasks: ", ex);
+    })

@@ -52,6 +52,24 @@ const convertProject = (p) => new Project(
     p.enddate
 );
 
+const convertTask = (p) => new TaskArea(
+    p.id,
+    p.shortdescription,
+    p.longdescription,
+    p.projectid
+);
+
+const convertArtifact = (p) => new Artifact(
+    p.id,
+    p.title,
+    p.shortdescription,
+    p.longdescription,
+    p.planedworkingtime,
+    p.realtime,
+    p.taskid
+);
+
+
 export async function loadProjects() {
     const projects = await loadData(
         "/project", 
@@ -76,26 +94,33 @@ export async function loadProject(id) {
 export function loadTaskAreas() {
     return loadData(
         "/task", 
-        data => data.records.map(p => new TaskArea(
-            p.id,
-            p.shortdescription,
-            p.longdescription,
-            p.projectid
-        )));
+        data => data.records.map(convertTask));
 }
 
 export function loadArtifacts() {
     return loadData(
         "/artifact", 
-        data => data.records.map(p => new Artifact(
-            p.id,
-            p.title,
-            p.shortdescription,
-            p.longdescription,
-            p.planedworkingtime,
-            p.realtime,
-            p.taskid
-        )));
+        data => data.records.map(convertArtifact));
+}
+
+
+export function loadProjectTasks(projectId) {
+    return loadData(
+        `/task?filter=projectid,eq,${projectId}`, 
+        data => data.records.map(convertTask));
+}
+
+export function loadTaskArtifacts(taskId) {
+    return loadData(
+        `/artifact?filter=taskid,eq,${taskId}`, 
+        data => data.records.map(convertArtifact));
+}
+
+export async function loadProjectArtifacts(projectId) {
+    var tasks = await loadProjectTasks(projectId);
+
+    const ta = await Promise.all(tasks.map(async t => await loadTaskArtifacts(t.id)));
+    return ta.flat();
 }
 
 
