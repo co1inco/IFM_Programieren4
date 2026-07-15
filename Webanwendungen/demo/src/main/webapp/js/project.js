@@ -100,5 +100,34 @@ function loadHeaders(body) {
             indexListElement: list
         });
     }
-
 }
+
+const COMMENTS_KEY = `project.${projectId}.comments`;
+
+document.getElementById('commentForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(e.target));
+    const comment = formData.comment;
+    const rating = formData.rating;
+
+    const comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) ?? '[]');
+    const item = {comment: comment, rating: rating};
+    comments.push(item);
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+
+    displayComment(item);
+
+});
+
+function displayComment(comment) {
+    const commentHtml = `<b>Bewertung: </b> ${comment.rating}, ${comment.comment}`;
+    var commentElement = parser.parseFromString(commentHtml, "text/html");
+    commentsElement.appendChild(commentElement.body);
+}
+
+
+const commentsElement = document.getElementById('comments');
+const comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) ?? '[]');
+comments.forEach(displayComment)
+

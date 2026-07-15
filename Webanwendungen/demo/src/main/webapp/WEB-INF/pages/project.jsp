@@ -66,7 +66,7 @@
 
             <div id="comments">
                 <h3>Kommentare</h3>
-                <form action="/myapp/project/1/comment" method="post">
+                <form action="#" method="post" id="commentForm">
                     <fieldset>
                         <label for="comment">Kommentar:</label>
                         <textarea id="comment" name="comment" class="comment-input"></textarea>
