@@ -85,20 +85,22 @@
             </div>
         </td>
 
-        <td class="prj-content-list hover-link">
-            <aside class="sidenav">
-                <h1>Inhalt</h1>
-                <ul>
-                    <li><a href="#leader">Projektleiter</a></li>
-                    <li><a href="#topic">Thema</a></li>
-                    <li>
-                        <a href="#description">Beschreibung</a>
-                        <ul id="descriptionIndex"></ul>
-                    </li>
-                    <li><a href="#goals">Ziele</a></li>
-                    <li><a href="#comments">Kommentare</a></li>
-                </ul>
-            </aside>
+        <td class="prj-content-list hover-link fill-h">
+            <div class="fill-h">
+                <aside class="sidenav">
+                    <h1>Inhalt</h1>
+                    <ul>
+                        <li><a href="#leader">Projektleiter</a></li>
+                        <li><a href="#topic">Thema</a></li>
+                        <li>
+                            <a href="#description">Beschreibung</a>
+                            <ul id="descriptionIndex"></ul>
+                        </li>
+                        <li><a href="#goals">Ziele</a></li>
+                        <li><a href="#comments">Kommentare</a></li>
+                    </ul>
+                </aside>
+            </div>
         </td>
     </tr>
 
