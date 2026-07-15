@@ -1,31 +1,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-<table>
+<table class="prj-content fill-w">
     <tr>
         <td>
-            <img src="/myapp/res/logo.png">
+            <div class="prj-header">
+                <div>
+                    <img id="projectIcon" src="/myapp/res/project/1_logo.png"/>
 
+                    <h1 id="projectTitle">Loading...</h1>
+                </div>
 
-
-            <h1>Projekt X</h1>
+                <span id="leader" class="margin-5"><strong>Projektleiter: </strong> <span id="projectLead"></span></span>
+            </div>
                 
-            <table style="vertical-align: top">
-                <tr id="leader">
+            <table class="new-project-table" style="vertical-align: top">
+                <tr>
                     <td>
-                        <strong>Projektleiter:</strong>
+                        <strong>Startdatum:</strong>
                     </td>
-                    <td>
-                        <span>Heinz Klaus</span>
+                    <td id="projectStartDate">
                     </td>
                 </tr>
-
+                <tr>
+                    <td>
+                        <strong>Enddatum:</strong>
+                    </td>
+                    <td id="projectEndDate">
+                    </td>
+                </tr>
                 <tr id="topic">
                     <td>
                         <strong>Thema: </strong>
                     </td>
                     <td>
-                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</span>
+                        <span id="projectDescriptionShort"></span>
                     </td>
                 </tr>
 
@@ -34,7 +42,7 @@
                         <strong>Beschreibung: </strong>
                     </td>
                     <td>
-                        <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </span>
+                        <span id="projectDescriptionLong"></span>
                     </td>
                 </tr>
 
@@ -43,23 +51,25 @@
                         <strong>Ziele: </strong>
                     </td>
                     <td>
-                        <ol>
-                            <li> Ziel ABC</li>
-                            <li> Ziel XYZ</li>
+                        <ol id="projectGoals">
                         </ol>
                     </td>
                 </tr>
+                
+                <!-- dummy space to test sticky scrolling -->
+                <tr style="height: 500px">
 
+                </tr>
             </table>
             
 
 
             <div id="comments">
                 <h3>Kommentare</h3>
-                <form action="/myapp/project/1/comment" method="post">
+                <form action="#" method="post" id="commentForm">
                     <fieldset>
                         <label for="comment">Kommentar:</label>
-                        <textarea id="comment" name="comment"></textarea>
+                        <textarea id="comment" name="comment" class="comment-input"></textarea>
                     </fieldset>
                     <fieldset>
                         <label>Bewertung</label>
@@ -75,17 +85,24 @@
             </div>
         </td>
 
-        <td>
-            <aside>
-            <h1>Inhalt</h1>
-            <ul>
-                <li><a href="#leader">Projektleiter</a></li>
-                <li><a href="#topic">Thema</a></li>
-                <li><a href="#description">Beschreibung</a></li>
-                <li><a href="#goals">Ziele</a></li>
-                <li><a href="#comments">Kommentare</a></li>
-            </ul>
-        </aside>
+        <td class="prj-content-list hover-link fill-h">
+            <div class="fill-h">
+                <aside class="sidenav">
+                    <h1>Inhalt</h1>
+                    <ul>
+                        <li><a href="#leader">Projektleiter</a></li>
+                        <li><a href="#topic">Thema</a></li>
+                        <li>
+                            <a href="#description">Beschreibung</a>
+                            <ul id="descriptionIndex"></ul>
+                        </li>
+                        <li><a href="#goals">Ziele</a></li>
+                        <li><a href="#comments">Kommentare</a></li>
+                    </ul>
+                </aside>
+            </div>
         </td>
     </tr>
+
+    <script type="module" src="${pageContext.request.contextPath}/js/project.js"></script>
 </table>

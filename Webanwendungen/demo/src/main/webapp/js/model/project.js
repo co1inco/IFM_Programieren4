@@ -38,6 +38,9 @@ export class Project {
     get startDate() { return this._startDate; }
     set startDate(value) { this._startDate = value; }
 
+    get maintainer() { return this._maintainer; }
+    set maintainer(value) { this._maintainer = value; }
+
     get shortDescription() {
         return this._shortDescription;
     }
@@ -54,6 +57,9 @@ export class Project {
 
         this._shortDescription = value;
     }
+
+    get longDescription() { return this._longDescription; }
+    set longDescription(value) { this._longDescription = value; }
 
     get_task_areas(tasks) {
         return tasks.filter(x => x.projectId === this.id);
