@@ -41,20 +41,21 @@ function loadData(endpoint, callback) {
         });
 }
 
+const convertProject = (p) => new Project(
+    p.id,
+    p.title,
+    p.shortdescription,
+    p.longdescription,
+    p.logo,
+    p.primaryresponsible,
+    p.startdate,
+    p.enddate
+);
 
 export async function loadProjects() {
     const projects = await loadData(
         "/project", 
-        data => data.records.map(p => new Project(
-            p.id,
-            p.title,
-            p.shortdescription,
-            p.longdescription,
-            p.logo,
-            p.primaryresponsible,
-            p.startdate,
-            p.enddate
-        )));
+        data => data.records.map(convertProject));
 
     return projects;
 }
@@ -62,17 +63,15 @@ export async function loadProjects() {
 export async function loadHomeProjects() {
     return await loadData(
         "/project?order=startdate,DESC&size=3", 
-        data => data.records.map(p => new Project(
-            p.id,
-            p.title,
-            p.shortdescription,
-            p.longdescription,
-            p.logo,
-            p.primaryresponsible,
-            p.startdate,
-            p.enddate
-        )));
+        data => data.records.map(convertProject));
 }
+
+export async function loadProject(id) {
+    return await loadData(
+        `/project?filter=id,eq,${id}`, 
+        data => convertProject(data.records[0]));
+}
+
 
 export function loadTaskAreas() {
     return loadData(
