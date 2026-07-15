@@ -183,3 +183,23 @@ export function resendStoredData() {
 
     return sendProjectData([], [], []);
 }
+
+export function createProject(projectData) {
+    return fetch(API_URL + "/project", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(projectData),
+        credentials: "same-origin"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(
+                    `Projekt konnte nicht gespeichert werden: ${response.status}`
+                );
+            }
+
+            return response.json();
+        });
+}

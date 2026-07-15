@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form class="new-project-form" action="/myapp/newproject" method="post" enctype="multipart/form-data">
+<form
+        id="newProjectForm"
+        class="new-project-form"
+        action="/myapp/newproject"
+        method="post"
+        enctype="multipart/form-data">
 
     <div class="prj-header">
 
@@ -55,3 +60,8 @@
     <input type="submit" value="Erstellen">
 
 </form>
+
+<script
+        type="module"
+        src="${pageContext.request.contextPath}/js/newProject.js">
+</script>
