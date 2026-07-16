@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,31 +22,43 @@
             <img src="/myapp/res/header320x34.png">
         </picture>
 
-        <div class="login-area">
+        <div class="login-area" id="login-area">
             <b>Login</b>
-            <form action="/myapp/submit" method="post">
+            <form action="#" method="post" id="loginForm">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
-                    <label for="name">Username</label>
+                    <label for="name" data-i18n="username">Username</label>
                     <input id="name" name="name" type="text"/> <br/>
 
-                    <label for="password">Password</label>
+                    <label for="password" data-i18n="password">Password</label>
                     <input id="password" name="password" type="password"/> <br/>
 
-                    <input type="submit" value="Login"/> 
+                    <input type="submit" value="Login" data-i18n="login"/> 
                 </fieldset>
             </form>
             
-            <span>Neu hier? <a href="register">Registrieren</a></span>
+            <span>
+                <span data-i18n="newHere">Neu hier</span> <a href="register" data-i18n="register">Registrieren</a>
+            </span>
+            
+        </div>
+
+        <div class="login-area" id="logout-area" style="visibility: collapse; margin: 50px">
+            <button id="logoutButton"><b>Logout</b></button>
         </div>
 
     </header>
 
     <nav class="main-nav hover-link">
         <ul>
-            <li><a href="/myapp/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
-            <li><a href="/myapp/projects.html">Projekte</a></li>
-            <li><a href="/myapp/newproject.html">Neues Projekt</a></li>
+            <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
+            <li><a href="${pageContext.request.contextPath}/projects.html" data-i18n="projects">Projekte</a></li>
+            <li><a href="${pageContext.request.contextPath}/newproject.html" data-i18n="newProject">Neues Projekt</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="#" onclick="setLanguage('de-DE')">DE</a></li>
+            <li><a href="#" onclick="setLanguage('en-US')">EN</a></li>
         </ul>
     </nav>
     
@@ -53,95 +66,49 @@
     
     <!-- Main Content -->
     <main>
-                
+        
         <div class="project-overview-header">
             <h1>Projektübersicht</h1>
 
             <div class="filter-menu">
-                <span>Filter ▼</span>
-
-                <div class="filter-options">
-                    <a href="#">Software</a><br/>
-                    <a href="#">KI</a><br/>
-                    <a href="#">Campus</a>
+                <div class="filter-button">
+                    Sortieren
                 </div>
+
+                <select id="sortSelect" class="sort-select">
+                    <option value="start">Anfangsdatum</option>
+                    <option value="duration">Laufzeit</option>
+                </select>
             </div>
         </div>
 
-        <ul class="project-list">
-            <li class="project-card">
-                <div class="project-header">
-                    <h3>Smart Campus Navigator</h3>
-                </div>
-                <div class="project-content">
-                    <span>
-                        Intelligente Navigation und Raumverwaltung für den Hochschulcampus
-                    </span>
-                </div>
 
-                <div class="project-footer">
-                    <a href="project/1.html">Zum Projekt</a>
-                </div>
-            </li>
-
-            <li class="project-card">
-                <div class="project-header">
-                    <h3>Parkplatz Survival</h3>
-                </div>
-                <div class="project-content">
-                    <span>Intelligente Parkplatzsuche für den Hochschulcampus</span>
-                </div>
-
-                <div class="project-footer">
-                    <a href="project/2.html">Zum Projekt</a>
-                </div>
-            </li>
-
-            <li class="project-card">
-                <div class="project-header">
-                    <h3>Campus Flohmarkt</h3>
-                </div>
-                <div class="project-content">
-                    <span>Online Flohmarkt für Studierende</span>
-                </div>
-                <div class="project-footer">
-                    <a href="project/3.html">Zum Projekt</a>
-                </div>
-            </li>
-
-            <li class="project-card">
-                <div class="project-header">
-                    <h3>Coffee Emergency System</h3>
-                </div>
-                <div class ="project-content">
-                    <span>Schnell und einfach Kaffee auf dem Hochschulcampus finden</span>
-                </div>
-
-                <div class="project-footer">
-                    <a href="project/4.html">Zum Projekt</a>
-                </div>
-            </li>
-
+        <ul class="project-list" id="project-list">
         </ul>
 
-        
+        <script type="module" src="${pageContext.request.contextPath}/js/projects.js"></script>
+
     </main>
     
     <!-- Footer -->
     <footer>
         <nav>
             <ul>
-                <li><a href="impresum">Impressum</a></li>
-                <li><a href="dsgvo">Datenschutzerklärung</a></li>
-                <li><a href="haftung">Haftungsausschluss</a></li>
+                <li><a href="impresum" data-i18n="imprint">Impressum</a></li>
+                <li><a href="dsgvo" data-i18n="privacyPolicy">Datenschutzerklärung</a></li>
+                <li><a href="haftung" data-i18n="disclaimer">Haftungsausschluss</a></li>
             </ul>
 
             <div class="back-to-top">
-                <a href="#header">Zurück zum Anfang</a> 
+                <a href="#header" data-i18n="backToTop">Zurück zum Anfang</a> 
             </div>
         </nav>
-        <p>&copy; 2026 StudBoard. All rights reserved. Kontakt: <a href="mailto:studboard@hsbi.de">hier</a></p>    
+        <p>
+            <span>&copy; 2026 StudBoard. All rights reserved.</span> 
+            <Span data-i18n="contact">Kontakt</Span>: <a href="mailto:studboard@hsbi.de">hier</a></p>    
         <br/>    
     </footer>
+
+    <script type="module" src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>

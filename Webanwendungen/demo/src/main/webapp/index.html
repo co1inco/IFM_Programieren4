@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,9 @@
             <img src="/myapp/res/header320x34.png">
         </picture>
 
-        <div class="login-area">
+        <div class="login-area" id="login-area">
             <b>Login</b>
-            <form action="/myapp/submit" method="post">
+            <form action="#" method="post" id="loginForm">
                 <!-- <legend>Login</legend> -->
                 <fieldset>
                     <label for="name" data-i18n="username">Username</label>
@@ -42,18 +43,22 @@
             
         </div>
 
+        <div class="login-area" id="logout-area" style="visibility: collapse; margin: 50px">
+            <button id="logoutButton"><b>Logout</b></button>
+        </div>
+
     </header>
 
     <nav class="main-nav hover-link">
         <ul>
-            <li><a href="/myapp/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
-            <li><a href="/myapp/projects.html" data-i18n="projects">Projekte</a></li>
-            <li><a href="/myapp/newproject.html" data-i18n="newProject">Neues Projekt</a></li>
+            <li><a href="${pageContext.request.contextPath}/"><img src="/myapp/res/startseite.svg" style="max-height: 1.0em;"/></a></li>
+            <li><a href="${pageContext.request.contextPath}/projects.html" data-i18n="projects">Projekte</a></li>
+            <li><a href="${pageContext.request.contextPath}/newproject.html" data-i18n="newProject">Neues Projekt</a></li>
         </ul>
 
         <ul>
-            <li><a href="#" onclick="setLanguage('de')">DE</a></li>
-            <li><a href="#" onclick="setLanguage('en')">EN</a></li>
+            <li><a href="#" onclick="setLanguage('de-DE')">DE</a></li>
+            <li><a href="#" onclick="setLanguage('en-US')">EN</a></li>
         </ul>
     </nav>
     
@@ -61,8 +66,7 @@
     
     <!-- Main Content -->
     <main>
-                
-
+        
         <section class="welcome-area">
             <h1>
                 <span class="welcome-line-one">Spannende Projekte...</span>
@@ -88,14 +92,15 @@
 
             <article class="home-projects">
                 <h2>Neue Projekte</h2>
-                <ul>
-                    <li>Smart Campus Navigator <a href="project/1.html">hier</a></li>
-                    <li>Parkplatz Survival <a href="project/2.html">hier</a></li>
-                    <li>Campus Flohmarkt <a href="project/3.html">hier</a></li>
-                    <li>Coffee Emergency System <a href="project/4.html">hier</a></li>
+                <ul id="project-list">
+                    <!-- <li>Smart Campus Navigator <a href="project/1">hier</a></li>
+                    <li>Parkplatz Survival <a href="project/2">hier</a></li>
+                    <li>Campus Flohmarkt <a href="project/3">hier</a></li>
+                    <li>Coffee Emergency System <a href="project/4">hier</a></li> -->
                 </ul>
             </article>
 
+            <script type="module" src="${pageContext.request.contextPath}/js/home.js"></script>
         </section>
 
         
@@ -120,7 +125,6 @@
         <br/>    
     </footer>
 
-    <script type="module" src="/myapp/js/main.js"></script>
-    <!-- <script type="module" src="js/main.js"></script> -->
+    <script type="module" src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
