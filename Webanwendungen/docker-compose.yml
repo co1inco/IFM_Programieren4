@@ -49,7 +49,7 @@ services:
       - ./SWAC:/opt/payara/appserver/glassfish/domains/domain1/docroot/SWAC:rw
       # autodeploy demo app (myapp)
       # - ./demo/target/myapp:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp:rw
-      # - ./demo/target/myapp.war:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp.war:rw
+      - ./demo/target/myapp.war:/opt/payara/appserver/glassfish/domains/domain1/autodeploy/myapp.war:rw
       - ./payara-libs:/opt/payara/appserver/glassfish/domains/domain1/lib/:rw
       # - ./payara-config:/opt/payara/appserver/glassfish/domains/domain1/config/:rw,Z
       - ./asadmin-scripts:/opt/payara/asadmin-scripts:ro

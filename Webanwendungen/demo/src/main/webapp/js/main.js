@@ -11,11 +11,21 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const formData = new FormData(e.target);
-  const response = await fetch('/login', {
+  
+  const response = await fetch('/myapp/data/user/login', {
     method: 'POST',
-    body: formData,
+    body: new URLSearchParams({
+        'username': formData.username,
+        'password': formData.password
+    }),
     credentials: 'include' // Sends/receives cookies
   });
+  
+  // const response = await fetch('/myapp/data/user/login', {
+  //   method: 'POST',
+  //   body: formData,
+  //   credentials: 'include' // Sends/receives cookies
+  // });
   
   if (response.ok) {
     // Update UI to show logged-in state

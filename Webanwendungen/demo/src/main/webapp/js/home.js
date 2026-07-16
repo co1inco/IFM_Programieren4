@@ -10,7 +10,7 @@ loadHomeProjects()
             const li = document.createElement("li");
             const a = document.createElement("a");
 
-            a.href = `project?id=${project.id}`;
+            a.href = `project.html?id=${project.id}`;
             a.textContent = 'hier';
 
             li.textContent = project.title + "  ";
